@@ -2,13 +2,13 @@
 Add support for SDL Input from Joystick in Menus eliminating the need for a Keyboard.  
 Additionally includes Pre-Configured Joypad Mappings + Raspberry Pi specific Tweaks
 
-Replace RetroPie-Setup Scripts with modified ones that Support SDL Input from Joystick:  
+**Replace RetroPie-Setup Scripts with modified ones that Support SDL Input from Joystick:**  
 Use [lzdoom-sijl.sh] Menu driven Script to assist with [sh/diff] files placement.  
 ~ OR ~  
 Manually install the Modified [lzdoom.sh] RetroPie-Setup Script + [sijl.diff] files in:  
 ~/RetroPie-Setup/scriptmodules/ports/lzdoom  
 
-Compile/Install [lzdoom] + [sijl] from [RetroPie-Setup]: '  
+**Compile/Install [lzdoom] + [sijl] from [RetroPie-Setup]:**  
 0ptional Packages -> Ports -> lzdoom -> *UPDATE FROM SOURCE*  
 
 # Changes to lzdoom v3.87c Source before compiling:  
