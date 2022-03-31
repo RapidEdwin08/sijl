@@ -4,16 +4,43 @@ Additionally includes Pre-Configured Joypad Mappings + Raspberry Pi specific Twe
 
 # Installation  
 1- **Replace RetroPie-Setup Scripts with modified ones that Support SDL Input from Joystick:**  
-Use [lzdoom-sijl.sh] Menu driven Script to assist with [sh/diff] files placement.  
-~ OR ~  
-Manually COPY the Modified [lzdoom.sh] RetroPie-Setup Script + [sijl.diff] files to:  
-~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh  
-~/RetroPie-Setup/scriptmodules/ports/lzdoom/*.diff  
-
 2- **Compile/Install [lzdoom] + [sijl] from [RetroPie-Setup]:**  
 0ptional Packages -> Ports -> lzdoom -> *UPDATE FROM SOURCE*  
 
-# Changes to lzdoom v3.87c Source before compiling:  
+Use [lzdoom-sijl.sh] Menu driven Script to assist with [sh/diff] files placement.  
+Can be ran manually from any directory:  
+```bash
+cd ~
+git clone https://github.com/RapidEdwin08/sijl.git
+sudo chmod 755 ~/sijl/lzdoom-sijl.sh
+cd ~/sijl && ./lzdoom-sijl.sh
+```
+0r can be ran from retropiemenu:  
+
+```bash
+wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/lzdoom-sijl.sh -P ~/RetroPie/retropiemenu
+```
+0ptionally you can Add an Entry and Icon to your retropiemenu [gamelist.xml]:  
+```bash
+wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/lzdoom-sijl.png -P ~/RetroPie/retropiemenu/icons
+```
+Example Entry:  
+```
+	<game>
+		<path>./lzdoom-sijl.sh</path>
+		<name>SIJL [lzdoom]</name>
+		<desc>INSTALL/REMOVE [lzdoom-sijl] for [RetroPie].</desc>
+		<image>/home/pi/RetroPie/retropiemenu/icons/lzdoom-sijl.png</image>
+	</game>
+```
+
+If you don't want to use the Menu driven script, Simply COPY the Modified [lzdoom.sh] RetroPie-Setup Script + [sijl.diff] files to:  
+~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh  
+~/RetroPie-Setup/scriptmodules/ports/lzdoom/*.diff  
+Then proceed to Compile/Install [lzdoom] + [sijl] from [RetroPie-Setup]  
+
+# diffs  
+**Changes to lzdoom v3.87c Source before compiling:**  
 am_colorset,			1 (Traditional Doom)  
 cl_run,			false (Always Run?)  
 gl_texture_usehires, false  
@@ -47,7 +74,7 @@ POV1Down +back
 POV1Left +left  
 POV1Right +right  
 
-# Changes to lzdoom v3.87c Installer Script before compiling:  
+**Changes to lzdoom v3.87c Installer Script before compiling:**  
 local params=("+fullscreen 1 -config $romdir/ports/doom/lzdoom.ini")  
 snd_mididevice, -2 (Timidity++)  
 mkRomDir "ports/doom/mods"  
