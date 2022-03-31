@@ -7,7 +7,8 @@ Additionally includes Pre-Configured Joypad Mappings + Raspberry Pi specific Twe
 Use [lzdoom-sijl.sh] Menu driven Script to assist with [sh/diff] files placement.  
 ~ OR ~  
 Manually COPY the Modified [lzdoom.sh] RetroPie-Setup Script + [sijl.diff] files to:  
-~/RetroPie-Setup/scriptmodules/ports/lzdoom  
+~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh  
+~/RetroPie-Setup/scriptmodules/ports/lzdoom/*.diff  
 
 2- **Compile/Install [lzdoom] + [sijl] from [RetroPie-Setup]:**  
 0ptional Packages -> Ports -> lzdoom -> *UPDATE FROM SOURCE*  
