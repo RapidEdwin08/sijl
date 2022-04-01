@@ -42,7 +42,8 @@ function build_lzdoom() {
         params+=(-DUSE_ARMV8=On)
     fi
     # Note: `-funsafe-math-optimizations` should be avoided, see: https://forum.zdoom.org/viewtopic.php?f=7&t=57781
-    CFLAGS="${CFLAGS//-funsafe-math-optimizations/}" CXXFLAGS="${CXXFLAGS//-funsafe-math-optimizations/}" cmake "${params[@]}" ..
+    # CFLAGS="${CFLAGS//-funsafe-math-optimizations/}" CXXFLAGS="${CXXFLAGS//-funsafe-math-optimizations/}" cmake "${params[@]}" ..
+    cmake "${params[@]}" ..
     make
     md_ret_require="$md_build/release/$md_id"
 }
