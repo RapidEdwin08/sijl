@@ -1,8 +1,13 @@
-# SDLInputJoystick for LZDoom v3.87c (sijl)  
+# SDLInputJoystick for LZDoom v3.87c (SIJL)  
 ![lzdoom-sijl.png](https://raw.githubusercontent.com/RapidEdwin08/sijl/main/lzdoom-sijl.png)  
 
 Add support for SDL Input from Joystick in Menus eliminating the need for a Keyboard.  
-Additionally includes Pre-Configured Joypad Mappings + Raspberry Pi specific Tweaks
+Additionally includes Pre-Configured Joypad Mappings + Raspberry Pi specific Tweaks  
+**NOTE:** *You must COMPLIE LZDOOM yourself, the Menu Script just helps you load the DIFFs*  
+
+This isn't really new, it was started a long time ago under this topic:  
+*Zdoom and Gampad Fully Working in MENU with NO KEYBOARD*  
+This is just Updated [rpi_fixes.diff] and slightly tweaked [lzdoom.sh] for lzdoom v3.87c  
 
 # Installation  
 1- **Replace RetroPie-Setup Scripts with modified ones that Support SDL Input from Joystick:**  
