@@ -1,4 +1,4 @@
-# SDLInputJoystick for LZDoom v3.87c (SIJL)  
+# SDLInputJoystick for LZDoom v3.87c (SIJL) for RetroPie  
 ![lzdoom-sijl.png](https://raw.githubusercontent.com/RapidEdwin08/sijl/main/lzdoom-sijl.png)  
 
 Add support for SDL Input from Joystick in Menus eliminating the need for a Keyboard.  
@@ -11,7 +11,7 @@ This is just Updated [rpi_fixes.diff] and slightly tweaked [lzdoom.sh] for lzdoo
 
 # Installation  
 1- **Replace RetroPie-Setup Scripts with modified ones that Support SDL Input from Joystick:**  
-2- **Compile/Install [lzdoom] + [sijl] from [RetroPie-Setup]:**  
+2- **Compile/Install [lzdoom] from [RetroPie-Setup]:**  
 0ptional Packages -> Ports -> lzdoom -> *UPDATE FROM SOURCE*  
 
 Use [lzdoom-sijl.sh] Menu driven Script to assist with [sh/diff] files placement.  
