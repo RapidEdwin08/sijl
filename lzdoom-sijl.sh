@@ -108,6 +108,14 @@ installLZJOY()
 {
 tput reset
 
+# Check for Internet Connection - internetSTATUS Displayed on Main Menu
+wget -q --spider http://google.com
+if [ ! $? -eq 0 ]; then
+	# No Internet - Back to Main Menu
+	dialog --no-collapse --title "               [ERROR]               " --msgbox "   *INTERNET CONNECTION REQUIRED*"  25 75
+	mainMENU
+fi
+
 if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_rpi_fixes.diff' ; echo $?)" == '1' ]; then
 	# Backup if not exist already
 	if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4joy ]; then mv ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4joy 2>/dev/null; fi
@@ -137,6 +145,7 @@ if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_rpi_fix
 	else
 		wget https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/scriptmodules/ports/lzdoom.sh -P /dev/shm
 		if [ -f /dev/shm/lzdoom.sh ]; then mv /dev/shm/lzdoom.sh ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh; fi
+		rm /dev/shm/lzdoom.sh 2>/dev/null
 	fi
 fi
 
