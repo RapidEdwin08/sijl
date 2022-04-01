@@ -61,8 +61,8 @@ echo '              Joy17 +right            POV1Right +right   '
 sijlREFS=$(
 echo ""
 echo "      ------------------------------------------------------------- "
-echo '        Compile/Install [lzdoom] + [sijl] from [RetroPie-Setup]: '
-echo '      0ptional Packages -> Ports -> lzdoom -> *UPDATE FROM SOURCE*  '
+echo '           Compile/Install [lzdoom] from [RetroPie-Setup]: '
+echo '      0ptional Packages -> Ports -> lzdoom -> *INSTALL FROM SOURCE*  '
 echo ""
 echo '       [lzdoom] Setup Files: ~/RetroPie-Setup/scriptmodules/ports  '
 echo ""
@@ -71,7 +71,7 @@ echo ""
 sijlREFSremove=$(
 echo ""
 echo "      ------------------------------------------------------------- "
-echo '        Remove/Uninstall [lzdoom] + [sijl] from [RetroPie-Setup]: '
+echo '        Remove/Uninstall [lzdoom] from [RetroPie-Setup]: '
 echo '            0ptional Packages -> Ports -> lzdoom -> *REMOVE*  '
 echo ""
 echo '       [lzdoom] Setup Files: ~/RetroPie-Setup/scriptmodules/ports  '
