@@ -43,8 +43,8 @@ pijoysdlREFS=$(
 echo ""
 echo '   Joy1 +jump   (doublebind +land)    Joy5 +weapprev (+map_zoomout)  '
 echo '   Joy2 +use    (doublebind +invuse)  Joy6 +weapnext (+map_zoomin)  '
-echo '   Joy3 +strafe (doublebind +invnext  Joy7 +altattack (+map_zoom -1.2)   '
-echo '   Joy4 +speed  (doublebind +crouch)  Joy8 +attack    (+map_zoom  1.2)   '
+echo '   Joy3 +speed (doublebind +invnext)  Joy7 +altattack (+map_zoom -1.2)   '
+echo '   Joy4 +strafe (doublebind +crouch)  Joy8 +attack    (+map_zoom  1.2)   '
 #echo ""
 echo '  Joy9 +togglemap         Joy10 *menu_main*       Joy11 +toggle cl_run'
 #echo ""
