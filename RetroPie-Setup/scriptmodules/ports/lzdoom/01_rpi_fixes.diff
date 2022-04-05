@@ -202,9 +202,9 @@ diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
 +doublebind Joy1 land
 +Joy2 +use
 +doublebind Joy2 invuse
-+Joy3 +strafe
++Joy3 +speed
 +doublebind Joy3 invnext
-+Joy4 +speed
++Joy4 +strafe
 +doublebind Joy4 crouch
 +Joy5 weapprev
 +Joy6 weapnext
