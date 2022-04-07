@@ -1,0 +1,77 @@
+diff -ur a/src/posix/sdl/i_joystick.cpp b/src/posix/sdl/i_joystick.cpp
+--- a/src/posix/sdl/i_joystick.cpp	2021-01-24 12:24:51.000000000 -0500
++++ b/src/posix/sdl/i_joystick.cpp	2022-04-05 14:51:34.269353042 -0400
+@@ -147,7 +147,7 @@
+ 				info.Name.Format("Axis %d", i+1);
+ 			else
+ 				info.Name.Format("Hat %d (%c)", (i-NumAxes)/2 + 1, (i-NumAxes)%2 == 0 ? 'x' : 'y');
+-			info.DeadZone = MIN_DEADZONE;
++			info.DeadZone = 0.1;
+ 			info.Multiplier = 1.0f;
+ 			info.Value = 0.0;
+ 			info.ButtonValue = 0;
+@@ -256,7 +256,7 @@
+ 	int					NumAxes;
+ 	int					NumHats;
+ };
+-const EJoyAxis SDLInputJoystick::DefaultAxes[5] = {JOYAXIS_Side, JOYAXIS_Forward, JOYAXIS_Pitch, JOYAXIS_Yaw, JOYAXIS_Up};
++const EJoyAxis SDLInputJoystick::DefaultAxes[5] = {JOYAXIS_Side, JOYAXIS_Forward, JOYAXIS_Yaw, JOYAXIS_Pitch, JOYAXIS_None};
+ 
+ class SDLInputJoystickManager
+ {
+diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
+--- a/wadsrc/static/defbinds.txt	2021-01-24 12:24:51.000000000 -0500
++++ b/wadsrc/static/defbinds.txt	2022-04-06 17:00:18.191985983 -0400
+@@ -83,3 +83,52 @@
+ mapbind kp+ +am_zoomin
+ mapbind mwheelup "am_zoom 1.2"
+ mapbind mwheeldown "am_zoom -1.2"
++mapbind Joy5 +am_zoomout
++mapbind Joy6 +am_zoomin
++mapbind Joy7 "am_zoom -1.2"
++mapbind Joy8 "am_zoom 1.2"
++
++// Joypad 10+ Button Bindings
++Joy1 +jump
++doublebind Joy1 +moveup
++Joy2 +use
++doublebind Joy2 invuse
++Joy3 +strafe
++doublebind Joy3 crouch
++Joy4 +speed
++doublebind Joy4 +movedown
++Joy5 weapprev
++doublebind Joy5 invprev
++Joy6 weapnext
++doublebind Joy6 invnext
++Joy7 +altattack
++doublebind Joy7 land
++Joy8 +attack
++Joy9 togglemap
++Joy10 menu_main
++
++// Pair Button/Analog Sticks Bindings
++Joy11 "toggle cl_run"
++Joy12 +speed
++Joy13 centerview
++doublebind Joy13 "showpop 1"
++
++// D-Pad Bindings PS3
++Joy14 +forward
++Joy15 +back
++Joy16 +left
++Joy17 +right
++
++// D-Pad Bindings PS4
++POV1Up +forward
++POV1Down +back
++POV1Left +left
++POV1Right +right
++
++/* Default Joypad Deadzones */
++Axis0deadzone 0.1
++Axis1deadzone 0.1
++Axis2deadzone 0.1
++Axis3deadzone 0.1
++Axis4deadzone 0.1
++Axis5deadzone 0.1
