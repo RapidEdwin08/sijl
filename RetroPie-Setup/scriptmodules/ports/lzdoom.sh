@@ -30,6 +30,7 @@ function sources_lzdoom() {
 	if isPlatform "rpi" && ! grep -q CNTRLMNU_OPEN_MAIN "$md_build/wadsrc/static/language.enu"; then
 		# Apply SDL/Pi Patch https://retropie.org.uk/forum/topic/16078/zdoom-and-gampad-fully-working-in-menu-with-no-keyboard
 		applyPatch "$md_data/01_rpi_fixes.diff"
+		applyPatch "$md_data/02_JoyMappings.diff"
 	fi
 }
 
@@ -88,6 +89,7 @@ function add_games_lzdoom() {
 
 function configure_lzdoom() {
     mkRomDir "ports/doom"
+    mkRomDir "ports/doom/iwads"
     mkRomDir "ports/doom/mods"
 
     moveConfigDir "$home/.config/$md_id" "$md_conf_root/doom"
