@@ -41,14 +41,14 @@ echo '         \_________/                              \__________/   '
 
 pijoysdlREFS=$(
 echo ""
-echo '   Joy1 +jump   (doublebind +land)    Joy5 +weapprev (+map_zoomout)  '
-echo '   Joy2 +use    (doublebind +invuse)  Joy6 +weapnext (+map_zoomin)  '
-echo '   Joy3 +speed (doublebind +invnext)  Joy7 +altattack (+map_zoom -1.2)   '
-echo '   Joy4 +strafe (doublebind +crouch)  Joy8 +attack    (+map_zoom  1.2)   '
+echo ' Joy1 +jump   (doublebind +flyup)  Joy5 +weapprev (doublebind +invprev)  '
+echo ' Joy2 +use    (doublebind +invuse) Joy6 +weapnext (doublebind +invnext)  '
+echo ' Joy3 +strafe (doublebind +crouch) Joy7 +altattack (doublebind +land)   '
+echo ' Joy4 +speed  (doublebind+flydown) Joy8 +attack    (+map_zoom  1.2)   '
 #echo ""
 echo '  Joy9 +togglemap         Joy10 *menu_main*       Joy11 +toggle cl_run'
 #echo ""
-echo ' Joy12 +speed (doublebind +up)     Joy13 +centerview (doublebind +down)'
+echo '     Joy12 +speed        Joy13 +centerview (doublebind showpop 1)'
 echo "      ------------------------------------------------------------- "
 echo '                          D-Pad Bindings '
 echo '              Joy14 +forward          POV1Up +forward   '
@@ -121,9 +121,21 @@ if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_rpi_fix
 	if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4joy ]; then mv ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4joy 2>/dev/null; fi
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh 2>/dev/null
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/01_rpi_fixes.diff 2>/dev/null
+	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings*.diff 2>/dev/null
 	mkdir ~/RetroPie-Setup/scriptmodules/ports/lzdoom 2>/dev/null
 	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom.sh -P ~/RetroPie-Setup/scriptmodules/ports
 	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/01_rpi_fixes.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	
+	# Multiple JoyMappings Options
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_0SFA.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_AndroidPS.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PS34.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PSX10.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_XBOX.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_GPi.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	
+	# 0ne-Size-Fits-All Neutral Axes
+	cp ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_0SFA.diff ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings.diff
 fi
 
 # FINISHED
@@ -139,6 +151,7 @@ tput reset
 if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh ]; then echo '01_rpi_fixes.diff' > ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh; fi
 if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_rpi_fixes.diff' ; echo $?)" == '0' ]; then
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/01_rpi_fixes.diff 2>/dev/null
+	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings*.diff 2>/dev/null
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom -d 2>/dev/null
 	if [ -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4joy ]; then
 		mv ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4joy ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh
