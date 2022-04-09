@@ -128,11 +128,11 @@ if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_rpi_fix
 	
 	# Multiple JoyMappings Options
 	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_0SFA.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_AndroidPS.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_8ButtonGPi.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_AndroidXBOX.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
 	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PS34.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PSX10.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PSXJoyRetro.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
 	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_XBOX.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_GPi.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
 	
 	# 0ne-Size-Fits-All Neutral Axes
 	cp ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_0SFA.diff ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings.diff
