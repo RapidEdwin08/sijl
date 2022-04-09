@@ -1,0 +1,188 @@
+diff -ur a/src/am_map.cpp b/src/am_map.cpp
+--- a/src/am_map.cpp	2021-01-24 12:24:51.000000000 -0500
++++ b/src/am_map.cpp	2021-02-02 08:09:03.000000000 -0500
+@@ -90,7 +90,7 @@
+ CVAR (Bool,  am_showitems,			false,		CVAR_ARCHIVE);
+ CVAR (Bool,  am_showtime,			true,		CVAR_ARCHIVE);
+ CVAR (Bool,  am_showtotaltime,		false,		CVAR_ARCHIVE);
+-CVAR (Int,   am_colorset,			0,			CVAR_ARCHIVE);
++CVAR (Int,   am_colorset,			1,			CVAR_ARCHIVE);
+ CVAR (Bool,  am_customcolors,		true,		CVAR_ARCHIVE);
+ CVAR (Int,   am_map_secrets,		1,			CVAR_ARCHIVE);
+ CVAR (Int,	 am_drawmapback,		1,			CVAR_ARCHIVE);
+diff -ur a/src/doomdef.h b/src/doomdef.h
+--- a/src/doomdef.h	2021-01-24 12:24:51.000000000 -0500
++++ b/src/doomdef.h	2021-01-25 14:33:56.000000000 -0500
+@@ -184,8 +184,8 @@
+ #define KEY_JOY6				(KEY_FIRSTJOYBUTTON+5)
+ #define KEY_JOY7				(KEY_FIRSTJOYBUTTON+6)
+ #define KEY_JOY8				(KEY_FIRSTJOYBUTTON+7)
+-#define KEY_JOY14				(KEY_FIRSTJOYBUTTON+13)
+-#define KEY_JOY15				(KEY_FIRSTJOYBUTTON+14)
++#define KEY_JOY14				(KEY_FIRSTJOYBUTTON+13)	// PS3 button
++#define KEY_JOY15				(KEY_FIRSTJOYBUTTON+14)	// PS3 button
+ #define KEY_LASTJOYBUTTON		0x187
+ #define KEY_JOYPOV1_UP			0x188
+ #define KEY_JOYPOV1_RIGHT		0x189
+diff -ur a/src/g_game.cpp b/src/g_game.cpp
+--- a/src/g_game.cpp	2021-01-24 12:24:51.000000000 -0500
++++ b/src/g_game.cpp	2022-03-31 03:27:55.816135687 -0400
+@@ -129,7 +129,7 @@
+ CVAR (Bool, chasedemo, false, 0);
+ CVAR (Bool, storesavepic, true, CVAR_ARCHIVE|CVAR_GLOBALCONFIG)
+ CVAR (Bool, longsavemessages, true, CVAR_ARCHIVE|CVAR_GLOBALCONFIG)
+-CVAR (String, save_dir, "", CVAR_ARCHIVE|CVAR_GLOBALCONFIG);
++CVAR (String, save_dir, "$DOOMWADDIR", CVAR_ARCHIVE|CVAR_GLOBALCONFIG);
+ CVAR (Bool, cl_waitforsave, true, CVAR_ARCHIVE | CVAR_GLOBALCONFIG);
+ CVAR (Bool, enablescriptscreenshot, false, CVAR_ARCHIVE | CVAR_GLOBALCONFIG);
+ EXTERN_CVAR (Float, con_midtime);
+@@ -235,7 +235,7 @@
+ 
+ #define SLOWTURNTICS	6 
+ 
+-CVAR (Bool,		cl_run,			true,	CVAR_GLOBALCONFIG|CVAR_ARCHIVE)		// Always run?
++CVAR (Bool,		cl_run,			false,	CVAR_GLOBALCONFIG|CVAR_ARCHIVE)		// Always run?
+ CVAR (Bool,		invertmouse,	false,	CVAR_GLOBALCONFIG|CVAR_ARCHIVE)		// Invert mouse look down/up?
+ CVAR (Bool,		invertmousex,	false,	CVAR_GLOBALCONFIG|CVAR_ARCHIVE)		// Invert mouse look left/right?
+ CVAR (Bool,		freelook,		true,	CVAR_GLOBALCONFIG|CVAR_ARCHIVE)		// Always mlook?
+@@ -2104,7 +2104,7 @@
+ 
+ CVAR (Int, autosavenum, 0, CVAR_NOSET|CVAR_ARCHIVE|CVAR_GLOBALCONFIG)
+ static int nextautosave = -1;
+-CVAR (Int, disableautosave, 0, CVAR_ARCHIVE|CVAR_GLOBALCONFIG)
++CVAR (Int, disableautosave, 2, CVAR_ARCHIVE|CVAR_GLOBALCONFIG)
+ CVAR (Bool, saveloadconfirmation, true, CVAR_ARCHIVE | CVAR_GLOBALCONFIG) // [mxd]
+ CUSTOM_CVAR (Int, autosavecount, 4, CVAR_ARCHIVE|CVAR_GLOBALCONFIG)
+ {
+diff -ur a/src/gl/textures/gl_texture.cpp b/src/gl/textures/gl_texture.cpp
+--- a/src/gl/textures/gl_texture.cpp	2021-01-24 12:24:51.000000000 -0500
++++ b/src/gl/textures/gl_texture.cpp	2021-02-12 20:59:21.000000000 -0500
+@@ -85,7 +85,7 @@
+ 	GLRenderer->FlushTextures();
+ }
+ 
+-CUSTOM_CVAR(Bool, gl_texture_usehires, true, CVAR_ARCHIVE|CVAR_NOINITCALL)
++CUSTOM_CVAR(Bool, gl_texture_usehires, false, CVAR_ARCHIVE|CVAR_NOINITCALL)
+ {
+ 	if (GLRenderer != NULL) GLRenderer->FlushTextures();
+ }
+diff -ur a/src/g_statusbar/shared_sbar.cpp b/src/g_statusbar/shared_sbar.cpp
+--- a/src/g_statusbar/shared_sbar.cpp	2021-01-24 12:24:51.000000000 -0500
++++ b/src/g_statusbar/shared_sbar.cpp	2021-02-10 15:51:15.000000000 -0500
+@@ -110,7 +110,7 @@
+ CVAR (Flag, pf_hazard,		paletteflash, PF_HAZARD)
+ 
+ // Stretch status bar to full screen width?
+-CUSTOM_CVAR (Int, st_scale, -1, CVAR_ARCHIVE)
++CUSTOM_CVAR (Int, st_scale, 2, CVAR_ARCHIVE)
+ {
+ 	if (self < -1)
+ 	{
+@@ -133,11 +133,11 @@
+ }
+ 
+ CVAR (Bool, crosshairon, true, CVAR_ARCHIVE);
+-CVAR (Int, crosshair, 0, CVAR_ARCHIVE)
+-CVAR (Bool, crosshairforce, false, CVAR_ARCHIVE)
+-CVAR (Color, crosshaircolor, 0xff0000, CVAR_ARCHIVE);
+-CVAR (Int, crosshairhealth, 1, CVAR_ARCHIVE);
+-CVAR (Float, crosshairscale, 1.0, CVAR_ARCHIVE);
++CVAR (Int, crosshair, 1, CVAR_ARCHIVE)
++CVAR (Bool, crosshairforce, true, CVAR_ARCHIVE)
++CVAR (Color, crosshaircolor, 0x00ff1e, CVAR_ARCHIVE);
++CVAR (Int, crosshairhealth, 0, CVAR_ARCHIVE);
++CVAR (Float, crosshairscale, 0.65f, CVAR_ARCHIVE);
+ CVAR (Bool, crosshairgrow, false, CVAR_ARCHIVE);
+ CUSTOM_CVAR(Int, am_showmaplabel, 2, CVAR_ARCHIVE)
+ {
+diff -ur a/src/m_joy.cpp b/src/m_joy.cpp
+--- a/src/m_joy.cpp	2021-01-24 12:24:51.000000000 -0500
++++ b/src/m_joy.cpp	2021-02-02 08:05:55.000000000 -0500
+@@ -55,7 +55,7 @@
+ 
+ // PUBLIC DATA DEFINITIONS -------------------------------------------------
+ 
+-CUSTOM_CVAR(Bool, use_joystick, false, CVAR_ARCHIVE|CVAR_GLOBALCONFIG|CVAR_NOINITCALL)
++CUSTOM_CVAR(Bool, use_joystick, true, CVAR_ARCHIVE|CVAR_GLOBALCONFIG|CVAR_NOINITCALL)
+ {
+ #ifdef _WIN32
+ 	joy_ps2raw.Callback();
+diff -ur a/src/p_effect.cpp b/src/p_effect.cpp
+--- a/src/p_effect.cpp	2021-01-24 12:24:51.000000000 -0500
++++ b/src/p_effect.cpp	2021-02-02 16:04:45.000000000 -0500
+@@ -56,7 +56,7 @@
+ #include "g_levellocals.h"
+ #include "vm.h"
+ 
+-CVAR (Int, cl_rockettrails, 1, CVAR_ARCHIVE);
++CVAR (Int, cl_rockettrails, 3, CVAR_ARCHIVE);
+ CVAR (Bool, r_rail_smartspiral, 0, CVAR_ARCHIVE);
+ CVAR (Int, r_rail_spiralsparsity, 1, CVAR_ARCHIVE);
+ CVAR (Int, r_rail_trailsparsity, 1, CVAR_ARCHIVE);
+@@ -130,7 +130,7 @@
+ 
+ // [BC] Allow the maximum number of particles to be specified by a cvar (so people
+ // with lots of nice hardware can have lots of particles!).
+-CUSTOM_CVAR( Int, r_maxparticles, 4000, CVAR_ARCHIVE )
++CUSTOM_CVAR( Int, r_maxparticles, 3000, CVAR_ARCHIVE )
+ {
+ 	if ( self == 0 )
+ 		self = 4000;
+diff -ur a/src/posix/sdl/i_input.cpp b/src/posix/sdl/i_input.cpp
+--- a/src/posix/sdl/i_input.cpp	2021-01-24 12:24:51.000000000 -0500
++++ b/src/posix/sdl/i_input.cpp	2021-01-25 17:09:07.000000000 -0500
+@@ -204,12 +204,10 @@
+ {
+ 	// Clear out any mouse movement.
+ 	SDL_GetRelativeMouseState (NULL, NULL);
+-	SDL_SetRelativeMouseMode (SDL_TRUE);
+ }
+ 
+ void I_ReleaseMouseCapture()
+ {
+-	SDL_SetRelativeMouseMode (SDL_FALSE);
+ }
+ 
+ static void PostMouseMove (int x, int y)
+@@ -280,7 +278,6 @@
+ static void I_CheckNativeMouse ()
+ {
+ 	bool focus = SDL_GetKeyboardFocus() != NULL;
+-	bool fs = screen->IsFullscreen();
+ 	
+ 	bool wantNative = !focus || (!use_mouse || GUICapture || paused || demoplayback || !inGame());
+ 
+diff -ur a/src/v_draw.cpp b/src/v_draw.cpp
+--- a/src/v_draw.cpp	2021-01-24 12:24:51.000000000 -0500
++++ b/src/v_draw.cpp	2021-02-02 16:30:57.000000000 -0500
+@@ -64,7 +64,7 @@
+ #include "textures.h"
+ #include "vm.h"
+ 
+-CUSTOM_CVAR(Int, uiscale, 0, CVAR_ARCHIVE | CVAR_NOINITCALL)
++CUSTOM_CVAR(Int, uiscale, 2, CVAR_ARCHIVE | CVAR_NOINITCALL)
+ {
+ 	if (self < 0)
+ 	{
+diff -ur a/wadsrc/static/language.enu b/wadsrc/static/language.enu
+--- a/wadsrc/static/language.enu	2021-01-24 12:24:51.000000000 -0500
++++ b/wadsrc/static/language.enu	2021-01-25 17:17:15.000000000 -0500
+@@ -1788,6 +1788,7 @@
+ CNTRLMNU_OPEN_LOAD				= "Open Load Menu";
+ CNTRLMNU_OPEN_OPTIONS				= "Open Options Menu";
+ CNTRLMNU_OPEN_DISPLAY				= "Open Display Menu";
++CNTRLMNU_OPEN_MAIN				= "Open Main Menu";
+ CNTRLMNU_QUICKSAVE				= "Quicksave";
+ CNTRLMNU_QUICKLOAD				= "Quickload";
+ CNTRLMNU_EXIT_TO_MAIN				= "Exit to Main Menu";
+diff -ur a/wadsrc/static/menudef.txt b/wadsrc/static/menudef.txt
+--- a/wadsrc/static/menudef.txt	2021-01-24 12:24:51.000000000 -0500
++++ b/wadsrc/static/menudef.txt	2021-02-02 16:48:24.000000000 -0500
+@@ -634,6 +634,7 @@
+ 	Control    "$CNTRLMNU_SCREENSHOT"      , "screenshot"
+ 	Control    "$CNTRLMNU_CONSOLE"         , "toggleconsole"
+ 	Control    "$CNTRLMNU_PAUSE"           , "pause"
++	Control    "$CNTRLMNU_OPEN_MAIN"       , "menu_main"
+ 
+ 	StaticText ""
+ 	Control    "$CNTRLMNU_DISPLAY_INC"     , "sizeup"
