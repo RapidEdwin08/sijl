@@ -46,18 +46,32 @@ If you don't want to use the Menu driven script, Simply COPY the Modified [lzdoo
 ~/RetroPie-Setup/scriptmodules/ports/lzdoom/*.diff  
 Then proceed to Compile/Install [lzdoom] from [RetroPie-Setup] -> *INSTALL FROM SOURCE*  
 
-# diffs  
-**Changes to lzdoom v3.87c Source before compiling:**  
-am_colorset,			1 (Traditional Doom)  
-cl_run,			false (Always Run?)  
+# Changes to lzdoom v3.87c Source before compiling:  
+
+***Changes to [lzdoom.sh] v3.87c Installer Script before compiling:***  
+local params=("+fullscreen 1 -config $romdir/ports/doom/lzdoom.ini")  
+snd_mididevice, -2 (Timidity++)  
+mkRomDir "ports/doom/iwads"  
+mkRomDir "ports/doom/mods"  
+
+***00_sbc_tweaks.diff:*** (0nly Applied to rPi/Odroid)  
 gl_texture_usehires, false  
-st_scale, 2 (HUD)  
-Crosshair (Cross 1 Green)  
-use_joystick, true  
 cl_rockettrails, 0  
 r_maxparticles, 3000 (Lowered from 4000)  
+
+***01_sijl_tweaks.diff:***  
+define KEY_JOY14				(KEY_FIRSTJOYBUTTON+13)	// PS3 button  
+define KEY_JOY15				(KEY_FIRSTJOYBUTTON+14)	// PS3 button  
+CNTRLMNU_OPEN_MAIN				= "Open Main Menu";  
+use_joystick, true  
+am_colorset,			1 (Traditional Doom)  
+cl_run,			false (Always Run?)  
+st_scale, 2  
+Crosshair (Cross 1 Green)  
 save_dir=$DOOMWADDIR  
 disableautosave=2  
+
+***02_JoyMappings.diff:***  
 const EJoyAxis SDLInputJoystick::DefaultAxes[5] = {JOYAXIS_Yaw, JOYAXIS_Forward, JOYAXIS_None, JOYAXIS_None, JOYAXIS_None};  
 Joy1 +jump   (doublebind +flyup)  
 Joy2 +use    (doublebind +invuse)  
@@ -80,12 +94,6 @@ POV1Up +forward
 POV1Down +back  
 POV1Left +left  
 POV1Right +right  
-
-**Changes to lzdoom v3.87c Installer Script before compiling:**  
-local params=("+fullscreen 1 -config $romdir/ports/doom/lzdoom.ini")  
-snd_mididevice, -2 (Timidity++)  
-mkRomDir "ports/doom/iwads"  
-mkRomDir "ports/doom/mods"  
 
 **0ptional:**
 The [02_JoyMappings.diff] is configured for 0ne-Size-Fits-All by Default.  
