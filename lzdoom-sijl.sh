@@ -82,7 +82,7 @@ mainMENU()
 {
 
 pijoysdlLOGOmenu=$pijoysdlLOGO
-if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_rpi_fixes.diff' ; echo $?)" == '1' ]; then pijoysdlLOGOmenu=$pijoysdlLOGOblank; fi
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tweaks.diff' ; echo $?)" == '1' ]; then pijoysdlLOGOmenu=$pijoysdlLOGOblank; fi
 
 # Confirm Configurations
 confLZJOY=$(dialog --stdout --no-collapse --title "SDL Input Joystick for LZDoom [sijl] by: RapidEdwin08 [202203]" \
@@ -90,12 +90,44 @@ confLZJOY=$(dialog --stdout --no-collapse --title "SDL Input Joystick for LZDoom
 	--menu "$pijoysdlLOGOmenu" 25 75 20 \
 	1 "><  INSTALL [sijl]  to  [RetroPie-Setup\..\ports]  ><" \
 	2 "><  REMOVE  [sijl] from [RetroPie-Setup\..\ports]  ><" \
-	3 "><  REFERENCES  ><")
+	3 "><  OPEN [RetroPie-Setup]  ><" \
+	4 "><  REFERENCES  ><")
 
-if [ "$confLZJOY" == '1' ]; then installLZJOY; fi
-if [ "$confLZJOY" == '2' ]; then removeLZJOY; fi
+if [ "$confLZJOY" == '1' ]; then
+	confiSIJLinstall=$(dialog --stdout --no-collapse --title "INSTALL [sijl]  to  [~/RetroPie-Setup/scriptmodules/ports]" \
+		--ok-label OK --cancel-label Back \
+		--menu "                          ? ARE YOU SURE ?             " 25 75 20 \
+		Y "YES INSTALL [sijl]  to  [RetroPie-Setup\..\ports]" \
+		B "BACK")
+	if [ "$confiSIJLinstall" == 'Y' ]; then installLZJOY; fi
+	mainMENU
+fi
+
+if [ "$confLZJOY" == '2' ]; then
+	confiSIJLremove=$(dialog --stdout --no-collapse --title "REMOVE [sijl]  from  [~/RetroPie-Setup/scriptmodules/ports]" \
+		--ok-label OK --cancel-label Back \
+		--menu "                          ? ARE YOU SURE ?             " 25 75 20 \
+		Y "YES REMOVE [sijl]  from  [RetroPie-Setup\..\ports]" \
+		B "BACK")
+	if [ "$confiSIJLremove" == 'Y' ]; then removeLZJOY; fi
+	mainMENU
+fi
 
 if [ "$confLZJOY" == '3' ]; then
+	confiRPsetup=$(dialog --stdout --no-collapse --title " QUIT SIJL MENU AND GO TO [RetroPie-Setup] TO COMPILE [LZDOOM] FROM SOURCE" \
+		--ok-label OK --cancel-label Back \
+		--menu "                          ? ARE YOU SURE ?             \nRetroPie Setup -> Manage Packages -> Manage optional packages -> lzdoom\n" 25 75 20 \
+		Y "YES OPEN [RetroPie-Setup]" \
+		B "BACK")
+	if [ "$confiRPsetup" == 'Y' ]; then
+		sudo bash ~/RetroPie-Setup/retropie_setup.sh
+		#sudo bash ~/RetroPie-Setup/retropie_packages.sh retropiemenu launch "/home/$USER/RetroPie-Setup/retropie_setup.sh" </dev/tty > /dev/tty
+		exit 0
+	fi
+	mainMENU
+fi
+
+if [ "$confLZJOY" == '4' ]; then
 	dialog --no-collapse --title "SDL Input Joystick for LZDoom [sijl] 10+ Button REFERENCES" --ok-label Back --msgbox "$pijoysdlLOGO $pijoysdlREFS $sijlREFS"  25 75
 	mainMENU
 fi
@@ -116,11 +148,12 @@ if [ ! $? -eq 0 ]; then
 	mainMENU
 fi
 
-if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_rpi_fixes.diff' ; echo $?)" == '1' ]; then
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tweaks.diff' ; echo $?)" == '1' ]; then
 	# Backup if not exist already
 	if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4joy ]; then mv ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4joy 2>/dev/null; fi
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh 2>/dev/null
-	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/01_rpi_fixes.diff 2>/dev/null
+	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/00_sbc_tweaks.diff 2>/dev/null
+	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/01_sijl_tweaks.diff 2>/dev/null
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings*.diff 2>/dev/null
 	mkdir ~/RetroPie-Setup/scriptmodules/ports/lzdoom 2>/dev/null
 	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom.sh -P ~/RetroPie-Setup/scriptmodules/ports
@@ -136,7 +169,7 @@ if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_rpi_fix
 	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_XBOX.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
 	
 	# 0ne-Size-Fits-All Neutral Axes
-	cp ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_0SFA.diff ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings.diff
+	cp ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_0SFA.diff ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings.diff 2>/dev/null
 fi
 
 # FINISHED
@@ -149,9 +182,11 @@ removeLZJOY()
 {
 tput reset
 
-if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh ]; then echo '01_rpi_fixes.diff' > ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh; fi
-if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_rpi_fixes.diff' ; echo $?)" == '0' ]; then
-	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/01_rpi_fixes.diff 2>/dev/null
+# Check [lzdoom.sh] for [01_sijl_tweaks] - Remove IF Found
+if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh ]; then echo '01_sijl_tweaks.diff' > ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh; fi
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tweaks.diff' ; echo $?)" == '0' ]; then
+	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/00_sbc_tweaks.diff 2>/dev/null
+	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/01_sijl_tweaks.diff 2>/dev/null
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings*.diff 2>/dev/null
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom -d 2>/dev/null
 	if [ -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4joy ]; then
