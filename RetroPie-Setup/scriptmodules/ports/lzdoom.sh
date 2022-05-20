@@ -27,12 +27,12 @@ function depends_lzdoom() {
 
 function sources_lzdoom() {
     gitPullOrClone
+	# Apply SDL Patch https://retropie.org.uk/forum/topic/16078/zdoom-and-gampad-fully-working-in-menu-with-no-keyboard
 	if ! grep -q CNTRLMNU_OPEN_MAIN "$md_build/wadsrc/static/language.enu"; then
 		if isPlatform "rpi" || [ -d /home/odroid/ ]; then
 			# Apply SBC Specific Tweaks
 			applyPatch "$md_data/00_sbc_tweaks.diff"
 		fi
-		# Apply SDL Patch https://retropie.org.uk/forum/topic/16078/zdoom-and-gampad-fully-working-in-menu-with-no-keyboard
 		applyPatch "$md_data/01_sijl_tweaks.diff" # Apply SIJL + Tweaks
 		applyPatch "$md_data/02_JoyMappings.diff" # Apply AXIS + Joypad Mappings Separate for Flexibility
 	fi
