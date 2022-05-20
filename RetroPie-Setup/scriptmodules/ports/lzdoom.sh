@@ -24,12 +24,14 @@ function depends_lzdoom() {
 
     getDepends "${depends[@]}"
 }
-
 function sources_lzdoom() {
     gitPullOrClone
-	if isPlatform "rpi" && ! grep -q CNTRLMNU_OPEN_MAIN "$md_build/wadsrc/static/language.enu"; then
-		# Apply SDL/Pi Patch https://retropie.org.uk/forum/topic/16078/zdoom-and-gampad-fully-working-in-menu-with-no-keyboard
-		applyPatch "$md_data/01_rpi_fixes.diff"
+	if ! grep -q CNTRLMNU_OPEN_MAIN "$md_build/wadsrc/static/language.enu"; then
+		if isPlatform "rpi" || [ -d /home/odroid/ ]; then
+			# Apply SDL/Pi Patch https://retropie.org.uk/forum/topic/16078/zdoom-and-gampad-fully-working-in-menu-with-no-keyboard
+			applyPatch "$md_data/01_rpi_fixes.diff"
+		fi
+		# Apply Joypad Mappings
 		applyPatch "$md_data/02_JoyMappings.diff"
 	fi
 }
