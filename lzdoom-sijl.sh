@@ -352,7 +352,7 @@ mappingLZJOY
 
 joymapDIFFmissing()
 {
-dialog --no-collapse --title " [~/RetroPie-Setup/scriptmodules/ports/lzdoom/*.diff] " --ok-label CONTINUE --msgbox "["$joyMAPdiff"] MISSING...   INSTALL [SIJL] FIRST?... $diffSIJLsh"  25 75
+dialog --no-collapse --title " [~/RetroPie-Setup/scriptmodules/ports/lzdoom/*.diff] " --ok-label CONTINUE --msgbox "["$joyMAPdiff"] MISSING...   INSTALL [SIJL] FIRST?..."  25 75
 mainMENU
 }
 
