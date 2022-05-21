@@ -26,10 +26,10 @@ diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
  mapbind kp+ +am_zoomin
  mapbind mwheelup "am_zoom 1.2"
  mapbind mwheeldown "am_zoom -1.2"
-+mapbind Joy5 +am_zoomout
-+mapbind Joy6 +am_zoomin
-+mapbind Joy7 "am_zoom -1.2"
-+mapbind Joy8 "am_zoom 1.2"
++mapbind Joy3 +am_zoomout
++mapbind Joy4 +am_zoomin
++mapbind Joy5 "am_zoom -1.2"
++mapbind Joy6 "am_zoom 1.2"
 +
 +// Joypad 8 Button Bindings - Button Type: x8 Button SNES/GPi - Axes Type: Neutral/D-Pad
 +Joy1 +jump
