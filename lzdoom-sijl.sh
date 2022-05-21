@@ -165,6 +165,9 @@ if [ ! $? -eq 0 ]; then
 	mainMENU
 fi
 
+# IF [lzdoom.sh] NOT FOUND then GET IT from [RetroPie-Setup/master]
+if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh ]; then wget https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/scriptmodules/ports/lzdoom.sh -P ~/RetroPie-Setup/scriptmodules/ports; fi
+
 if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tweaks.diff' ; echo $?)" == '1' ]; then
 	# Backup if not exist already
 	if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4sijl ]; then mv ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4sijl 2>/dev/null; fi
@@ -208,7 +211,7 @@ echo ""
 )
 
 # FINISHED
-dialog --no-collapse --title "INSTALL SDL Input Joystick for LZDoom [sijl] to RetroPie-Setup *COMPLETE!* " --ok-label Back --msgbox "$pijoysdlLOGO $sijlREFS $diffSIJLsh"  25 75
+dialog --no-collapse --title "INSTALL SDL Input Joystick for LZDoom [sijl] to RetroPie-Setup *COMPLETE!* " --ok-label Back --msgbox "$sijlREFS $diffSIJLsh"  25 75
 
 mainMENU
 }
@@ -227,6 +230,7 @@ if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tw
 	if [ -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4sijl ]; then
 		mv ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4sijl ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh
 	else
+		# IF [lzdoom.sh] Backup NOT FOUND then GET IT from [RetroPie-Setup/master]
 		wget https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/scriptmodules/ports/lzdoom.sh -P /dev/shm
 		if [ -f /dev/shm/lzdoom.sh ]; then mv /dev/shm/lzdoom.sh ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh; fi
 		rm /dev/shm/lzdoom.sh 2>/dev/null
@@ -252,7 +256,7 @@ echo ""
 )
 
 # FINISHED
-dialog --no-collapse --title "REMOVE SDL Input Joystick for LZDoom [sijl] from RetroPie-Setup  *COMPLETE!* " --ok-label Back --msgbox "$pijoysdlLOGOblank $sijlREFSremove $diffSIJLsh"  25 75
+dialog --no-collapse --title "REMOVE SDL Input Joystick for LZDoom [sijl] from RetroPie-Setup  *COMPLETE!* " --ok-label Back --msgbox "$sijlREFSremove $diffSIJLsh"  25 75
 
 mainMENU
 }
