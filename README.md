@@ -8,6 +8,9 @@ Additionally includes Pre-Configured Joypad Mappings + Raspberry Pi specific Twe
 This isn't really new, it was started a long time ago under this topic:  
 *Zdoom and Gampad Fully Working in MENU with NO KEYBOARD*  
 This is just Updated [rpi_fixes.diff] and slightly tweaked [lzdoom.sh] for lzdoom v3.87c  
+***SOURCES:***
+[https://github.com/drfrag666/gzdoom](https://github.com/drfrag666/gzdoom/releases/tag/3.87c)  
+[https://github.com/RetroPie/RetroPie-Setup/tree/master/scriptmodules/ports](https://github.com/RetroPie/RetroPie-Setup/blob/master/scriptmodules/ports/lzdoom.sh)  
 
 # Installation  
 1- **Replace RetroPie-Setup Scripts with modified ones that Support SDL Input from Joystick:**  
