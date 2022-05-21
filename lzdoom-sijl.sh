@@ -78,6 +78,23 @@ echo '       [lzdoom] Setup Files: ~/RetroPie-Setup/scriptmodules/ports  '
 echo ""
 )
 
+diffSIJLsh=$(
+echo ""
+echo '============[DIFFs]============================{lzdoom.sh}============'
+echo "      00_sbc_tweaks.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/00_sbc_tweaks.diff ]; then echo "???"; fi)                    lzdoom.sh $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh ]; then echo "???"; fi)"
+echo "      01_sijl_tweaks.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/01_sijl_tweaks.diff ]; then echo "???"; fi)                   lzdoom.sh.b4sijl $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4sijl ]; then echo "???"; fi)"
+echo "      02_JoyMappings.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings.diff ]; then echo "???"; fi)                           "
+echo ""
+echo "      02_JoyMappings_0SFA.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_0SFA.diff ]; then echo "???"; fi)                           "
+echo "      02_JoyMappings_8Button.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_8Button.diff ]; then echo "???"; fi)                           "
+echo "      02_JoyMappings_AndroidXBOX.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_AndroidXBOX.diff ]; then echo "???"; fi)                           "
+echo "      02_JoyMappings_PS34.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PS34.diff ]; then echo "???"; fi)                           "
+echo "      02_JoyMappings_PSXJoyRetro.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PSXJoyRetro.diff ]; then echo "???"; fi)                           "
+echo "      02_JoyMappings_XBOX360.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_XBOX360.diff ]; then echo "???"; fi)                           "
+echo "======================================================================"
+echo ""
+)
+
 mainMENU()
 {
 
@@ -128,7 +145,7 @@ if [ "$confLZJOY" == '3' ]; then
 fi
 
 if [ "$confLZJOY" == '4' ]; then
-	dialog --no-collapse --title "SDL Input Joystick for LZDoom [sijl] 10+ Button REFERENCES" --ok-label Back --msgbox "$pijoysdlLOGO $pijoysdlREFS $sijlREFS"  25 75
+	dialog --no-collapse --title "SDL Input Joystick for LZDoom [sijl] 10+ Button REFERENCES" --ok-label Back --msgbox "$pijoysdlLOGO $pijoysdlREFS $sijlREFS $diffSIJLsh"  25 75
 	mainMENU
 fi
 
@@ -150,7 +167,7 @@ fi
 
 if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tweaks.diff' ; echo $?)" == '1' ]; then
 	# Backup if not exist already
-	if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4joy ]; then mv ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4joy 2>/dev/null; fi
+	if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4sijl ]; then mv ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4sijl 2>/dev/null; fi
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh 2>/dev/null
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/00_sbc_tweaks.diff 2>/dev/null
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/01_sijl_tweaks.diff 2>/dev/null
@@ -162,18 +179,36 @@ if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tw
 	
 	# Multiple JoyMappings Options
 	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_0SFA.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_8ButtonGPi.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_8Button.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
 	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_AndroidXBOX.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
 	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PS34.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
 	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PSXJoyRetro.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_XBOX.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_XBOX360.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
 	
 	# 0ne-Size-Fits-All Neutral Axes
 	cp ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_0SFA.diff ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings.diff 2>/dev/null
 fi
 
+# Update before entering menu
+diffSIJLsh=$(
+echo ""
+echo '============[DIFFs]============================{lzdoom.sh}============'
+echo "      00_sbc_tweaks.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/00_sbc_tweaks.diff ]; then echo "???"; fi)                    lzdoom.sh $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh ]; then echo "???"; fi)"
+echo "      01_sijl_tweaks.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/01_sijl_tweaks.diff ]; then echo "???"; fi)                   lzdoom.sh.b4sijl $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4sijl ]; then echo "???"; fi)"
+echo "      02_JoyMappings.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings.diff ]; then echo "???"; fi)                           "
+echo ""
+echo "      02_JoyMappings_0SFA.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_0SFA.diff ]; then echo "???"; fi)                           "
+echo "      02_JoyMappings_8Button.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_8Button.diff ]; then echo "???"; fi)                           "
+echo "      02_JoyMappings_AndroidXBOX.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_AndroidXBOX.diff ]; then echo "???"; fi)                           "
+echo "      02_JoyMappings_PS34.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PS34.diff ]; then echo "???"; fi)                           "
+echo "      02_JoyMappings_PSXJoyRetro.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PSXJoyRetro.diff ]; then echo "???"; fi)                           "
+echo "      02_JoyMappings_XBOX360.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_XBOX360.diff ]; then echo "???"; fi)                           "
+echo "======================================================================"
+echo ""
+)
+
 # FINISHED
-dialog --no-collapse --title "INSTALL SDL Input Joystick for LZDoom [sijl] to RetroPie-Setup *COMPLETE!* " --ok-label Back --msgbox "$pijoysdlLOGO $sijlREFS"  25 75
+dialog --no-collapse --title "INSTALL SDL Input Joystick for LZDoom [sijl] to RetroPie-Setup *COMPLETE!* " --ok-label Back --msgbox "$pijoysdlLOGO $sijlREFS $diffSIJLsh"  25 75
 
 mainMENU
 }
@@ -189,8 +224,8 @@ if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tw
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/01_sijl_tweaks.diff 2>/dev/null
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings*.diff 2>/dev/null
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom -d 2>/dev/null
-	if [ -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4joy ]; then
-		mv ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4joy ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh
+	if [ -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4sijl ]; then
+		mv ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4sijl ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh
 	else
 		wget https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/scriptmodules/ports/lzdoom.sh -P /dev/shm
 		if [ -f /dev/shm/lzdoom.sh ]; then mv /dev/shm/lzdoom.sh ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh; fi
@@ -198,8 +233,26 @@ if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tw
 	fi
 fi
 
+# Update before entering menu
+diffSIJLsh=$(
+echo ""
+echo '============[DIFFs]============================{lzdoom.sh}============'
+echo "      00_sbc_tweaks.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/00_sbc_tweaks.diff ]; then echo "???"; fi)                    lzdoom.sh $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh ]; then echo "???"; fi)"
+echo "      01_sijl_tweaks.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/01_sijl_tweaks.diff ]; then echo "???"; fi)                   lzdoom.sh.b4sijl $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4sijl ]; then echo "???"; fi)"
+echo "      02_JoyMappings.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings.diff ]; then echo "???"; fi)                           "
+echo ""
+echo "      02_JoyMappings_0SFA.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_0SFA.diff ]; then echo "???"; fi)                           "
+echo "      02_JoyMappings_8Button.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_8Button.diff ]; then echo "???"; fi)                           "
+echo "      02_JoyMappings_AndroidXBOX.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_AndroidXBOX.diff ]; then echo "???"; fi)                           "
+echo "      02_JoyMappings_PS34.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PS34.diff ]; then echo "???"; fi)                           "
+echo "      02_JoyMappings_PSXJoyRetro.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PSXJoyRetro.diff ]; then echo "???"; fi)                           "
+echo "      02_JoyMappings_XBOX360.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_XBOX360.diff ]; then echo "???"; fi)                           "
+echo "======================================================================"
+echo ""
+)
+
 # FINISHED
-dialog --no-collapse --title "REMOVE SDL Input Joystick for LZDoom [sijl] from RetroPie-Setup  *COMPLETE!* " --ok-label Back --msgbox "$pijoysdlLOGOblank $sijlREFSremove"  25 75
+dialog --no-collapse --title "REMOVE SDL Input Joystick for LZDoom [sijl] from RetroPie-Setup  *COMPLETE!* " --ok-label Back --msgbox "$pijoysdlLOGOblank $sijlREFSremove $diffSIJLsh"  25 75
 
 mainMENU
 }
