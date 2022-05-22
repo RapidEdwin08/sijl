@@ -77,11 +77,11 @@ function add_games_lzdoom() {
 	
 	# FluidSynth is too memory/CPU intensive
     if isPlatform "rpi" || [ -d /home/odroid/ ]; then
-        # -2 Timidity++
+        # -2 Timidity++  -3 OPL Synth Emulation
 		params+=("+'snd_mididevice -2'")
     elif isPlatform "arm"; then
-        # -3 OPL Synth Emulation
-		params+=("+'snd_mididevice -3'")
+        # -2 Timidity++  -3 OPL Synth Emulation
+		params+=("+'snd_mididevice -2'")
     fi
 
     if isPlatform "kms"; then
