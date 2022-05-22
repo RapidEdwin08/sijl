@@ -145,7 +145,7 @@ fi
 if [ "$confLZJOY" == '5' ]; then
 	confiSIJLremove=$(dialog --stdout --no-collapse --title "REMOVE [sijl]  from  [~/RetroPie-Setup/scriptmodules/ports]" \
 		--ok-label OK --cancel-label Back \
-		--menu "                          ? ARE YOU SURE ?             " 25 75 20 \
+		--menu "                          ? ARE YOU SURE ?             \n             *INTERNET CONNECTION REQUIRED* TO RE-INSTALL\n" 25 75 20 \
 		Y "YES REMOVE [sijl]  from  [RetroPie-Setup\..\ports]" \
 		B "BACK")
 	if [ "$confiSIJLremove" == 'Y' ]; then removeLZJOY; fi
