@@ -273,7 +273,7 @@ mappingLZJOY()
 
 confLZmapping=$(dialog --stdout --no-collapse --title "SELECT [JoyMapping.diff] from [~/RetroPie-Setup/scriptmodules/ports/lzdoom]" \
 		--ok-label OK --cancel-label Back \
-		--menu "   [JoyMapping.diff] will be Applied during Compile of [lzdoom]  " 25 75 20 \
+		--menu "   [JoyMapping.diff] will be Applied during Compile of [lzdoom] [lzdoom.sh]: $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep '02_JoyMappings' | cut -c 2- )" 25 75 20 \
 		1 "[0ne-Size-Fits-All]" \
 		2 "[8Button]" \
 		3 "[AndroidXBOX]" \
@@ -346,7 +346,7 @@ echo "======================================================================"
 echo ""
 )
 
-dialog --no-collapse --title "SELECT [$joyMAPdiff]  *COMPLETE!* " --ok-label Back --msgbox "$sijlREFS $diffSIJLsh"  25 75
+dialog --no-collapse --title "SELECT [$joyMAPdiff]  *COMPLETE!* " --ok-label Back --msgbox "$sijlREFS $diffSIJLsh [lzdoom.sh]: $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep '02_JoyMappings' | cut -c 2- )"  25 75
 mappingLZJOY
 }
 
