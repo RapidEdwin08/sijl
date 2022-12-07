@@ -34,7 +34,8 @@ function sources_lzdoom() {
 			applyPatch "$md_data/00_sbc_tweaks.diff"
 		fi
 		applyPatch "$md_data/01_sijl_tweaks.diff" # Apply SIJL + Tweaks
-		applyPatch "$md_data/02_JoyMappings.diff" # Apply AXIS + Joypad Mappings Separate for Flexibility
+		applyPatch "$md_data/02_JoyMappings_0SFA.diff"
+		applyPatch "$md_data/03_Preferences.diff"
 	fi
 }
 
@@ -93,7 +94,6 @@ function add_games_lzdoom() {
 
 function configure_lzdoom() {
     mkRomDir "ports/doom"
-    mkRomDir "ports/doom/iwads"
     mkRomDir "ports/doom/mods"
 
     moveConfigDir "$home/.config/$md_id" "$md_conf_root/doom"
