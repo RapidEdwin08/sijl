@@ -10,11 +10,10 @@ This isn't really new, it was started a long time ago under this topic:
 This is just Updated [rpi_fixes.diff] and slightly tweaked [lzdoom.sh] for lzdoom v3.87c  
 
 # Installation  
-1- **Replace RetroPie-Setup Scripts with modified ones that Support SDL Input from Joystick:**  
+1- Use [lzdoom-sijl.sh] Menu driven Script to assist with [sh/diff] files placement.  
 2- **Compile/Install [lzdoom] from [RetroPie-Setup]:**  
 0ptional Packages -> Ports -> lzdoom -> *INSTALL FROM SOURCE*  
 
-Use [lzdoom-sijl.sh] Menu driven Script to assist with [sh/diff] files placement.  
 Can be ran from retropiemenu:  
 
 ```bash
