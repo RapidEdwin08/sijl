@@ -1,15 +1,3 @@
-diff -ur a/src/gl/textures/gl_texture.cpp b/src/gl/textures/gl_texture.cpp
---- a/src/gl/textures/gl_texture.cpp	2021-01-24 12:24:51.000000000 -0500
-+++ b/src/gl/textures/gl_texture.cpp	2021-02-12 20:59:21.000000000 -0500
-@@ -85,7 +85,7 @@
- 	GLRenderer->FlushTextures();
- }
- 
--CUSTOM_CVAR(Bool, gl_texture_usehires, true, CVAR_ARCHIVE|CVAR_NOINITCALL)
-+CUSTOM_CVAR(Bool, gl_texture_usehires, false, CVAR_ARCHIVE|CVAR_NOINITCALL)
- {
- 	if (GLRenderer != NULL) GLRenderer->FlushTextures();
- }
 diff -ur a/src/p_effect.cpp b/src/p_effect.cpp
 --- a/src/p_effect.cpp	2021-01-24 12:24:51.000000000 -0500
 +++ b/src/p_effect.cpp	2021-02-02 16:04:45.000000000 -0500
