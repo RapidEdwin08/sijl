@@ -18,23 +18,20 @@ This is just Updated [rpi_fixes.diff] and slightly tweaked [lzdoom.sh] for lzdoo
 0ptional Packages -> Ports -> lzdoom -> *INSTALL FROM SOURCE*  
 
 Use [lzdoom-sijl.sh] Menu driven Script to assist with [sh/diff] files placement.  
-Can be ran manually from any directory:  
+Can be ran from retropiemenu:  
+
+```bash
+wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/lzdoom-sijl.sh -P ~/RetroPie/retropiemenu
+wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/lzdoom-sijl.png -P ~/RetroPie/retropiemenu/icons
+```
+0r Can be ran manually from any directory:  
 ```bash
 cd ~
 git clone https://github.com/RapidEdwin08/sijl.git
 sudo chmod 755 ~/sijl/lzdoom-sijl.sh
 cd ~/sijl && ./lzdoom-sijl.sh
 ```
-0r can be ran from retropiemenu:  
-
-```bash
-wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/lzdoom-sijl.sh -P ~/RetroPie/retropiemenu
-```
-0ptionally you can Add an Entry and Icon to your retropiemenu [gamelist.xml]:  
-```bash
-wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/lzdoom-sijl.png -P ~/RetroPie/retropiemenu/icons
-```
-Example Entry:  
+0ptionally you can Add an Entry to retropiemenu [gamelist.xml]:  
 ```
 	<game>
 		<path>./lzdoom-sijl.sh</path>
@@ -44,37 +41,30 @@ Example Entry:
 	</game>
 ```
 
-If you don't want to use the Menu driven script, Simply COPY the Modified [lzdoom.sh] RetroPie-Setup Script + [sijl.diff] files to:  
-~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh  
-~/RetroPie-Setup/scriptmodules/ports/lzdoom/*.diff  
-Then proceed to Compile/Install [lzdoom] from [RetroPie-Setup] -> *INSTALL FROM SOURCE*  
-
 # Changes to lzdoom v3.87c Source before compiling:  
 
-***Changes to [lzdoom.sh] v3.87c Installer Script before compiling:***  
+***[lzdoom.sh] v3.87c RetroPie-Setup Installer Script:***  
 local params=("+fullscreen 1 -config $romdir/ports/doom/lzdoom.ini")  
 snd_mididevice, -2 (Timidity++)  
-mkRomDir "ports/doom/iwads"  
 mkRomDir "ports/doom/mods"  
 
-***00_sbc_tweaks.diff:*** (0nly Applied to rPi/Odroid)  
-gl_texture_usehires, false  
+***00_sbc_tweaks.diff: (0nly Applied to rPi/Odroid)***  
 cl_rockettrails, 0  
 r_maxparticles, 3000 (Lowered from 4000)  
 
 ***01_sijl_tweaks.diff:***  
-define KEY_JOY14				(KEY_FIRSTJOYBUTTON+13)	// PS3 button  
-define KEY_JOY15				(KEY_FIRSTJOYBUTTON+14)	// PS3 button  
-CNTRLMNU_OPEN_MAIN				= "Open Main Menu";  
+CNTRLMNU_OPEN_MAIN = "Open Main Menu";  
 use_joystick, true  
-am_colorset,			1 (Traditional Doom)  
-cl_run,			false (Always Run?)  
+
+***03_Preferences.diff:***  
+am_colorset, 1 (Traditional Doom)  
+cl_run, false (Always Run?)  
 st_scale, 2  
 Crosshair (Cross 1 Green)  
 save_dir=$DOOMWADDIR  
-disableautosave=2  
+disableautosave=2'  
 
-***02_JoyMappings.diff:***  
+***02_JoyMappings.diff:*** *(0ne-Size-Fits-All)*  
 const EJoyAxis SDLInputJoystick::DefaultAxes[5] = {JOYAXIS_Yaw, JOYAXIS_Forward, JOYAXIS_None, JOYAXIS_None, JOYAXIS_None};  
 Joy1 +jump   (doublebind +flyup)  
 Joy2 +use    (doublebind +invuse)  
@@ -100,7 +90,9 @@ POV1Right +right
 
 **0ptional:**
 The [02_JoyMappings.diff] is configured for 0ne-Size-Fits-All by Default.  
-Included are a handful of Additional .DIFFs that are for Specific Joypads.  
-Simply rename to [02_JoyMappings.diff] before Compiling lzdoom.  
-Possibly will add a Selection for these DIFFs to the Menu Script in the future...  
-**NOTE:** *You can Tweak the [02_JoyMappings.diff] file, but you must maintain the number of Lines.*  
+*You can Tweak the [02_JoyMappings_CUSTOM.diff] file, just make sure to maintain the same number of //Lines.*  
+
+**NOTE:** If you don't want to use the Menu driven script, Simply COPY the Modified [lzdoom.sh] RetroPie-Setup Script + [sijl.diff] files to:  
+~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh  
+~/RetroPie-Setup/scriptmodules/ports/lzdoom/*.diff  
+Then proceed to Compile/Install [lzdoom] from [RetroPie-Setup] -> *INSTALL FROM SOURCE*  
