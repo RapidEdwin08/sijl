@@ -92,6 +92,8 @@ echo "      02_JoyMappings_CUSTOM.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodule
 echo "      02_JoyMappings_PS34.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PS34.diff ]; then echo "???"; fi)                           "
 echo "      02_JoyMappings_PSXJoyRetro.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PSXJoyRetro.diff ]; then echo "???"; fi)                           "
 echo "      02_JoyMappings_XBOX360.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_XBOX360.diff ]; then echo "???"; fi)                           "
+echo""
+echo "      03_Preferences.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/03_Preferences.diff ]; then echo "???"; fi)"
 echo "======================================================================"
 echo ""
 )
@@ -182,6 +184,7 @@ if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tw
 	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom.sh -P ~/RetroPie-Setup/scriptmodules/ports
 	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/00_sbc_tweaks.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
 	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/01_sijl_tweaks.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/03_Preferences.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
 	
 	# Multiple JoyMappings Options
 	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_0SFA.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
@@ -212,6 +215,8 @@ echo "      02_JoyMappings_CUSTOM.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodule
 echo "      02_JoyMappings_PS34.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PS34.diff ]; then echo "???"; fi)                           "
 echo "      02_JoyMappings_PSXJoyRetro.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PSXJoyRetro.diff ]; then echo "???"; fi)                           "
 echo "      02_JoyMappings_XBOX360.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_XBOX360.diff ]; then echo "???"; fi)                           "
+echo ""
+echo "      03_Preferences.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/03_Preferences.diff ]; then echo "???"; fi)"
 echo "======================================================================"
 echo ""
 )
