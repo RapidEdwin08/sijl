@@ -33,9 +33,9 @@ function sources_lzdoom() {
 			# Apply SBC Specific Tweaks
 			applyPatch "$md_data/00_sbc_tweaks.diff"
 		fi
-		applyPatch "$md_data/01_sijl_tweaks.diff" # Apply SIJL + Tweaks
+		applyPatch "$md_data/01_sijl_tweaks.diff"
 		applyPatch "$md_data/02_JoyMappings_0SFA.diff"
-		applyPatch "$md_data/03_Preferences.diff"
+		applyPatch "$md_data/03_Preferences.diff" #ENABLED
 	fi
 }
 
