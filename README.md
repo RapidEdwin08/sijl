@@ -9,11 +9,13 @@ This isn't really new, it was started a long time ago under this topic:
 *Zdoom and Gampad Fully Working in MENU with NO KEYBOARD*  
 This is just Updated [rpi_fixes.diff] and slightly tweaked [lzdoom.sh] for lzdoom v3.87c  
 
-# Installation  
+# How To  
 1- Use [lzdoom-sijl.sh] Menu driven Script to assist with [sh/diff] files placement.  
 2- **Compile/Install [lzdoom] from [RetroPie-Setup]:**  
 0ptional Packages -> Ports -> lzdoom -> *INSTALL FROM SOURCE*  
+When Compiled from Source [lzdoom.ini] will always populate your Selected Joy Pad Bindings by *Default*  
 
+# Installation  
 Can be ran from retropiemenu:  
 
 ```bash
@@ -60,33 +62,32 @@ Crosshair (Cross 1 Green)
 save_dir=$DOOMWADDIR  
 disableautosave=2'  
 
-***02_JoyMappings.diff:*** *(0ne-Size-Fits-All)*  
+***02_JoyMappings_0SFA.diff:*** *(Neutral Axes - Multiple D-Pad Support - 0ut-0f-Box Config for 8+Button JoyPads - togglemap @Joy9)*  
 const EJoyAxis SDLInputJoystick::DefaultAxes[5] = {JOYAXIS_Yaw, JOYAXIS_Forward, JOYAXIS_None, JOYAXIS_None, JOYAXIS_None};  
-Joy1 +jump   (doublebind +flyup)  
-Joy2 +use    (doublebind +invuse)  
-Joy3 +strafe (doublebind +crouch)   
-Joy4 +speed  (doublebind +flydown)  
-Joy5 +weapprev (doublebind invprev)  
-Joy6 +weapnext (doublebind invnext)  
-Joy7 +altattack (doublebind land)  
-Joy8 +attack    (+map_zoom  1.2)  
-Joy9 +togglemap  
-Joy10 ***menu_main***  
-Joy11 +toggle cl_run  
-Joy12 +speed  
-Joy13 +centerview (doublebind showpop 1)  
-Joy14 +forward  
-Joy15 +back  
-Joy16 +left  
-Joy17 +right  
+Joy1 +jump  
+Joy2 +use  
+Joy3 +attack  
+Joy4 weapnext  
+Joy5 +moveleft  
+Joy6 +moveright  
+Joy7 "toggle cl_run"  
+Joy8 menu_main  
+Joy9 togglemap  
+  
+// D-Pad Bindings Hat  
 POV1Up +forward  
 POV1Down +back  
 POV1Left +left  
 POV1Right +right  
+  
+// D-Pad Bindings PS3  
+Joy14 +forward  
+Joy15 +back  
+Joy16 +left  
+Joy17 +right  
 
 **0ptional:**
-The [02_JoyMappings.diff] is configured for 0ne-Size-Fits-All by Default.  
-*You can Tweak the [02_JoyMappings_CUSTOM.diff] file, just make sure to maintain the same number of //Lines.*  
+*You can Tweak the [02_JoyMappings_CUSTOM.diff] file, just make sure to maintain the same number of +//Lines #77+ #78Empty.*  
 
 **NOTE:** If you don't want to use the Menu driven script, Simply COPY the Modified [lzdoom.sh] RetroPie-Setup Script + [sijl.diff] files to:  
 ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh  
