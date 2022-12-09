@@ -274,7 +274,7 @@ if [ "$confLZJOY" == 'P' ]; then preferencesLZJOY; fi
 if [ "$confLZJOY" == 'S' ]; then
 	confiRPsetup=$(dialog --stdout --no-collapse --title " RetroPie Setup -> Manage Packages -> Manage optional packages -> lzdoom" \
 		--ok-label OK --cancel-label Back \
-		--menu "                          ? ARE YOU SURE ?              $sijlREFS $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep 'applyPatch' | cut -c 2- )" 25 75 20 \
+		--menu "                          ? ARE YOU SURE ?              $sijlREFS $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep 'applyPatch' | awk '{$1=$1};1' )" 25 75 20 \
 		Y "YES OPEN [RetroPie-Setup]" \
 		B "BACK")
 	if [ "$confiRPsetup" == 'Y' ]; then
@@ -292,7 +292,7 @@ if [ "$confLZJOY" == 'R' ]; then
 	echo "======================================================================"
 	echo '      [lzdoom] Files: ~/RetroPie-Setup/scriptmodules/ports  '
 	echo ""
-	echo "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep 'applyPatch' | cut -c 2- )"
+	echo "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep 'applyPatch' | awk '{$1=$1};1' )"
 	echo ""
 	echo '============[DIFFs]============================{lzdoom.sh}============'
 	echo "      00_sbc_tweaks.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/00_sbc_tweaks.diff ]; then echo "???"; fi)                    lzdoom.sh $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh ]; then echo "???"; fi)"
@@ -392,7 +392,7 @@ echo ""
 echo "======================================================================"
 echo '      [lzdoom] Files: ~/RetroPie-Setup/scriptmodules/ports  '
 echo ""
-echo "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep 'applyPatch' | cut -c 2- )"
+echo "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep 'applyPatch' | awk '{$1=$1};1' )"
 echo ""
 echo '============[DIFFs]============================{lzdoom.sh}============'
 echo "      00_sbc_tweaks.diff $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/00_sbc_tweaks.diff ]; then echo "???"; fi)                    lzdoom.sh $(if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh ]; then echo "???"; fi)"
@@ -453,7 +453,7 @@ mappingLZJOY()
 
 confLZmapping=$(dialog --stdout --no-collapse --title "SELECT [JoyMapping.diff] from [~/RetroPie-Setup/scriptmodules/ports/lzdoom]" \
 		--ok-label OK --cancel-label Back \
-		--menu "   [JoyMapping.diff] will be Applied during Compile of [lzdoom] [lzdoom.sh]: $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep '02_JoyMappings' | cut -c 2- )" 25 75 20 \
+		--menu "   [JoyMapping.diff] will be Applied during Compile of [lzdoom] $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep '02_JoyMappings' | awk '{$1=$1};1' )" 25 75 20 \
 		1 "[0ne-Size-Fits-All]" \
 		2 "[8-Button] SNES" \
 		3 "[Android/PC/PS3]" \
@@ -535,7 +535,19 @@ if [ "$confLZmapping" == '11' ]; then
 	sed -i 's/applyPatch\ \"\$md\_data\/02\_JoyMappings.*/applyPatch\ \"\$md\_data\/02_JoyMappings_CUSTOM.diff\"/g' ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh
 fi
 
-dialog --no-collapse --title "SELECT [$joyMAPdiff]  *COMPLETE!* " --ok-label Back --msgbox "$sijlREFS $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep 'applyPatch' | cut -c 2- ) $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom/$joyMAPdiff | grep "^+const EJoyAxis") $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom/$joyMAPdiff | tail -n 49)"  25 75
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_0SFA.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$snes8JOYpad; fi
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_8Button.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$snes8JOYpad; fi
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_AndroidPCPS3.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$androidpcps3JOYpad; fi
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_N64.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$n64JOYpad; fi
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_PS2.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$psxJOYpad; fi
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_PS34.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$ps34JOYpad; fi
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_PS34MKX.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$mkxJOYpad; fi
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_PSXJoyRetro.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$psxJOYpad; fi
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_XBOX360_TriggerAxis' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$xbox360aJOYpad; fi
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_XBOX360_TriggerButtons' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$xbox360bJOYpad; fi
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_CUSTOM.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$customJOYpad; fi
+
+dialog --no-collapse --title "SELECT [$joyMAPdiff]  *COMPLETE!* " --ok-label Back --msgbox "$sijlREFS $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep 'applyPatch' | awk '{$1=$1};1' ) $lineDIV $pijoysdlLOGOmenu $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom/$joyMAPdiff | grep "^+const EJoyAxis") $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom/$joyMAPdiff | tail -n 49)"  25 75
 mappingLZJOY
 }
 
@@ -544,7 +556,7 @@ preferencesLZJOY()
 
 confLZprefs=$(dialog --stdout --no-collapse --title "SELECT [Preferences.diff] from [~/RetroPie-Setup/scriptmodules/ports/lzdoom]" \
 		--ok-label OK --cancel-label Back \
-		--menu "   [Preferences.diff] will be Applied during Compile of [lzdoom] [lzdoom.sh]: $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep '03_Preferences' | cut -c 2- )" 25 75 20 \
+		--menu "   [Preferences.diff] will be Applied during Compile of [lzdoom] $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep '03_Preferences' | awk '{$1=$1};1' )" 25 75 20 \
 		1 "[ENABLE]  Preferences.diff" \
 		2 "[DISABLE] Preferences.diff" \
 		B "BACK")
@@ -563,7 +575,7 @@ if [ "$confLZprefs" == '2' ]; then
 	sed -i 's/applyPatch\ \"\$md\_data\/03\_Preferences.*/#applyPatch\ \"\$md\_data\/03_Preferences.diff\ #DISABLED\"/g' ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh
 fi
 
-dialog --no-collapse --title "TOGGLE [$joyMAPdiff]  *COMPLETE!* " --ok-label Back --msgbox "$sijlREFS $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep 'applyPatch' | cut -c 2- ) $lineDIV $diffsREF"  25 75
+dialog --no-collapse --title "TOGGLE [$joyMAPdiff]  *COMPLETE!* " --ok-label Back --msgbox "$sijlREFS $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep 'applyPatch' | awk '{$1=$1};1' ) $lineDIV $diffsREF"  25 75
 preferencesLZJOY
 }
 
