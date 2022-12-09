@@ -1,0 +1,72 @@
+diff -ur a/src/doomdef.h b/src/doomdef.h
+--- a/src/doomdef.h	2021-01-24 12:24:51.000000000 -0500
++++ b/src/doomdef.h	2021-01-25 14:33:56.000000000 -0500
+@@ -184,8 +184,8 @@
+ #define KEY_JOY6				(KEY_FIRSTJOYBUTTON+5)
+ #define KEY_JOY7				(KEY_FIRSTJOYBUTTON+6)
+ #define KEY_JOY8				(KEY_FIRSTJOYBUTTON+7)
+-#define KEY_JOY14				(KEY_FIRSTJOYBUTTON+13)
+-#define KEY_JOY15				(KEY_FIRSTJOYBUTTON+14)
++#define KEY_JOY14				(KEY_FIRSTJOYBUTTON+13)	// PS3 button
++#define KEY_JOY15				(KEY_FIRSTJOYBUTTON+14)	// PS3 button
+ #define KEY_LASTJOYBUTTON		0x187
+ #define KEY_JOYPOV1_UP			0x188
+ #define KEY_JOYPOV1_RIGHT		0x189
+diff -ur a/src/m_joy.cpp b/src/m_joy.cpp
+--- a/src/m_joy.cpp	2021-01-24 12:24:51.000000000 -0500
++++ b/src/m_joy.cpp	2021-02-02 08:05:55.000000000 -0500
+@@ -55,7 +55,7 @@
+ 
+ // PUBLIC DATA DEFINITIONS -------------------------------------------------
+ 
+-CUSTOM_CVAR(Bool, use_joystick, false, CVAR_ARCHIVE|CVAR_GLOBALCONFIG|CVAR_NOINITCALL)
++CUSTOM_CVAR(Bool, use_joystick, true, CVAR_ARCHIVE|CVAR_GLOBALCONFIG|CVAR_NOINITCALL)
+ {
+ #ifdef _WIN32
+ 	joy_ps2raw.Callback();
+diff -ur a/src/posix/sdl/i_input.cpp b/src/posix/sdl/i_input.cpp
+--- a/src/posix/sdl/i_input.cpp	2021-01-24 12:24:51.000000000 -0500
++++ b/src/posix/sdl/i_input.cpp	2021-01-25 17:09:07.000000000 -0500
+@@ -204,12 +204,10 @@
+ {
+ 	// Clear out any mouse movement.
+ 	SDL_GetRelativeMouseState (NULL, NULL);
+-	SDL_SetRelativeMouseMode (SDL_TRUE);
+ }
+ 
+ void I_ReleaseMouseCapture()
+ {
+-	SDL_SetRelativeMouseMode (SDL_FALSE);
+ }
+ 
+ static void PostMouseMove (int x, int y)
+@@ -280,7 +278,6 @@
+ static void I_CheckNativeMouse ()
+ {
+ 	bool focus = SDL_GetKeyboardFocus() != NULL;
+-	bool fs = screen->IsFullscreen();
+ 	
+ 	bool wantNative = !focus || (!use_mouse || GUICapture || paused || demoplayback || !inGame());
+ 
+diff -ur a/wadsrc/static/language.enu b/wadsrc/static/language.enu
+--- a/wadsrc/static/language.enu	2021-01-24 12:24:51.000000000 -0500
++++ b/wadsrc/static/language.enu	2021-01-25 17:17:15.000000000 -0500
+@@ -1788,6 +1788,7 @@
+ CNTRLMNU_OPEN_LOAD				= "Open Load Menu";
+ CNTRLMNU_OPEN_OPTIONS				= "Open Options Menu";
+ CNTRLMNU_OPEN_DISPLAY				= "Open Display Menu";
++CNTRLMNU_OPEN_MAIN				= "Open Main Menu";
+ CNTRLMNU_QUICKSAVE				= "Quicksave";
+ CNTRLMNU_QUICKLOAD				= "Quickload";
+ CNTRLMNU_EXIT_TO_MAIN				= "Exit to Main Menu";
+diff -ur a/wadsrc/static/menudef.txt b/wadsrc/static/menudef.txt
+--- a/wadsrc/static/menudef.txt	2021-01-24 12:24:51.000000000 -0500
++++ b/wadsrc/static/menudef.txt	2021-02-02 16:48:24.000000000 -0500
+@@ -634,6 +634,7 @@
+ 	Control    "$CNTRLMNU_SCREENSHOT"      , "screenshot"
+ 	Control    "$CNTRLMNU_CONSOLE"         , "toggleconsole"
+ 	Control    "$CNTRLMNU_PAUSE"           , "pause"
++	Control    "$CNTRLMNU_OPEN_MAIN"       , "menu_main"
+ 
+ 	StaticText ""
+ 	Control    "$CNTRLMNU_DISPLAY_INC"     , "sizeup"
