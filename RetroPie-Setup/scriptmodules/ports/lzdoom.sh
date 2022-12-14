@@ -27,7 +27,7 @@ function depends_lzdoom() {
 
 function sources_lzdoom() {
     gitPullOrClone
-    if isPlatform "arm"; then
+	if isPlatform "arm"; then
         # patch the CMake build file to remove the ARMv8 options, we handle `gcc`'s CPU flags ourselves
         applyPatch "$md_data/01_remove_cmake_arm_options.diff"
         # patch the 21.06 version of LZMA-SDK to disable the CRC32 ARMv8 intrinsics forced for ARM CPUs
@@ -47,7 +47,10 @@ function build_lzdoom() {
     rm -rf release
     mkdir -p release
     cd release
-    local params=(-DCMAKE_INSTALL_PREFIX="$md_inst" -DPK3_QUIET_ZIPDIR=ON -DCMAKE_BUILD_TYPE=Release)
+    local params=(-DCMAKE_INSTALL_PREFIX="$md_inst" -DCMAKE_BUILD_TYPE=Release)
+    if isPlatform "armv8"; then
+        params+=(-DUSE_ARMV8=On)
+    fi
     # Note: `-funsafe-math-optimizations` should be avoided, see: https://forum.zdoom.org/viewtopic.php?f=7&t=57781
     cmake "${params[@]}" ..
     make
@@ -79,8 +82,8 @@ function add_games_lzdoom() {
     # FluidSynth is too memory/CPU intensive
     ## -2 Timidity++ ## -3 OPL Synth Emulation
 	params+=("+snd_mididevice -2")
-
-    if isPlatform "kms"; then
+	
+	if isPlatform "kms"; then
         params+=("+vid_vsync 1" "-width %XRES%" "-height %YRES%")
     fi
 
