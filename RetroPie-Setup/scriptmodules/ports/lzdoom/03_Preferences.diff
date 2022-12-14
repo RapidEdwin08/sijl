@@ -1,6 +1,6 @@
 diff -ur a/src/am_map.cpp b/src/am_map.cpp
---- a/src/am_map.cpp	2021-01-24 12:24:51.000000000 -0500
-+++ b/src/am_map.cpp	2021-02-02 08:09:03.000000000 -0500
+--- a/src/am_map.cpp	[lzdoom 3.87c SOURCE]
++++ b/src/am_map.cpp	[lzdoom 3.87c SIJL]
 @@ -90,7 +90,7 @@
  CVAR (Bool,  am_showitems,			false,		CVAR_ARCHIVE);
  CVAR (Bool,  am_showtime,			true,		CVAR_ARCHIVE);
@@ -11,8 +11,8 @@ diff -ur a/src/am_map.cpp b/src/am_map.cpp
  CVAR (Int,   am_map_secrets,		1,			CVAR_ARCHIVE);
  CVAR (Int,	 am_drawmapback,		1,			CVAR_ARCHIVE);
 diff -ur a/src/g_game.cpp b/src/g_game.cpp
---- a/src/g_game.cpp	2021-01-24 12:24:51.000000000 -0500
-+++ b/src/g_game.cpp	2022-03-31 03:27:55.816135687 -0400
+--- a/src/g_game.cpp	[lzdoom 3.87c SOURCE]
++++ b/src/g_game.cpp	[lzdoom 3.87c SIJL]
 @@ -129,7 +129,7 @@
  CVAR (Bool, chasedemo, false, 0);
  CVAR (Bool, storesavepic, true, CVAR_ARCHIVE|CVAR_GLOBALCONFIG)
@@ -41,8 +41,8 @@ diff -ur a/src/g_game.cpp b/src/g_game.cpp
  CUSTOM_CVAR (Int, autosavecount, 4, CVAR_ARCHIVE|CVAR_GLOBALCONFIG)
  {
 diff -ur a/src/g_statusbar/shared_sbar.cpp b/src/g_statusbar/shared_sbar.cpp
---- a/src/g_statusbar/shared_sbar.cpp	2021-01-24 12:24:51.000000000 -0500
-+++ b/src/g_statusbar/shared_sbar.cpp	2021-02-10 15:51:15.000000000 -0500
+--- a/src/g_statusbar/shared_sbar.cpp	[lzdoom 3.87c SOURCE]
++++ b/src/g_statusbar/shared_sbar.cpp	[lzdoom 3.87c SIJL]
 @@ -110,7 +110,7 @@
  CVAR (Flag, pf_hazard,		paletteflash, PF_HAZARD)
  
@@ -70,8 +70,8 @@ diff -ur a/src/g_statusbar/shared_sbar.cpp b/src/g_statusbar/shared_sbar.cpp
  CUSTOM_CVAR(Int, am_showmaplabel, 2, CVAR_ARCHIVE)
  {
 diff -ur a/src/v_draw.cpp b/src/v_draw.cpp
---- a/src/v_draw.cpp	2021-01-24 12:24:51.000000000 -0500
-+++ b/src/v_draw.cpp	2021-02-02 16:30:57.000000000 -0500
+--- a/src/v_draw.cpp	[lzdoom 3.87c SOURCE]
++++ b/src/v_draw.cpp	[lzdoom 3.87c SIJL]
 @@ -64,7 +64,7 @@
  #include "textures.h"
  #include "vm.h"

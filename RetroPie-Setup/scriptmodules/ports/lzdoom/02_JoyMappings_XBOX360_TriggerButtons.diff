@@ -1,6 +1,6 @@
 diff -ur a/src/posix/sdl/i_joystick.cpp b/src/posix/sdl/i_joystick.cpp
---- a/src/posix/sdl/i_joystick.cpp	2021-01-24 12:24:51.000000000 -0500
-+++ b/src/posix/sdl/i_joystick.cpp	2022-04-05 14:51:34.269353042 -0400
+--- a/src/posix/sdl/i_joystick.cpp	[lzdoom 3.87c SOURCE]
++++ b/src/posix/sdl/i_joystick.cpp	[lzdoom 3.87c SIJL]
 @@ -147,7 +147,7 @@
  				info.Name.Format("Axis %d", i+1);
  			else
@@ -20,8 +20,8 @@ diff -ur a/src/posix/sdl/i_joystick.cpp b/src/posix/sdl/i_joystick.cpp
  class SDLInputJoystickManager
  {
 diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
---- a/wadsrc/static/defbinds.txt	2021-01-24 12:24:51.000000000 -0500
-+++ b/wadsrc/static/defbinds.txt	2022-04-06 17:00:18.191985983 -0400
+--- a/wadsrc/static/defbinds.txt	[lzdoom 3.87c SOURCE]
++++ b/wadsrc/static/defbinds.txt	[lzdoom 3.87c SIJL]
 @@ -83,3 +83,52 @@
  mapbind kp+ +am_zoomin
  mapbind mwheelup "am_zoom 1.2"
@@ -31,47 +31,47 @@ diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
 +mapbind Joy7 "am_zoom -1.2"
 +mapbind Joy8 "am_zoom 1.2"
 +
-+// Joypad 10+ Button Bindings - x4 Axes - Triggers as Buttons - [xpad] PLUS PATCH [01_enable_leds_and_trigmapping.diff]
++// XBOX360 0riginal/Generic - Triggers as Buttons - [xpad] DEFAULT DRIVER WITH PATCH [01_enable_leds_and_trigmapping.diff]
 +Joy1 +jump
-+doublebind Joy1 +moveup
 +Joy2 +use
-+doublebind Joy2 invuse
-+Joy3 +strafe
-+doublebind Joy3 crouch
++doublebind Joy2 land
++Joy3 +crouch
++doublebind Joy3 +movedown
 +Joy4 +speed
-+doublebind Joy4 +movedown
++doublebind Joy4 +reload
++
 +Joy5 weapprev
-+doublebind Joy5 invprev
 +Joy6 weapnext
-+doublebind Joy6 invnext
 +Joy7 +altattack
 +Joy8 +attack
++
 +Joy9 togglemap
 +Joy10 menu_main
 +
-+// Pair Button/Analog Sticks Bindings
-+Joy11 "toggle cl_run"
-+doublebind Joy11 "showpop 1"
++// Pair Button - MissonObjectives
++Joy11 "showpop 1"
++
++// Analog Stick Press Buttons +doublebinds for Flying/Swimming - Using Jump instead of moveup to avoid Unwanted Activation of Flying
 +Joy12 +speed
++doublebind Joy12 +movedown
 +Joy13 centerview
-+doublebind Joy13 land
++doublebind Joy13 +jump
 +
-+// D-Pad Bindings
-+Joy14 +forward
-+Joy15 +back
-+Joy16 +left
-+Joy17 +right
++// //Reference// D-Pad Bindings XBOX360 0riginal - Use POV# Instead for Compatibility with Generic - Avoids Double Input Joy#+POV#
++//Joy14 +forward
++//Joy15 +back
++//Joy16 +left
++//Joy17 +right
 +
-+// D-Pad Bindings Hat
-+POV1Up +forward
-+POV1Down +back
-+POV1Left +left
-+POV1Right +right
-+
-+
-+
++// POV D-Pad Bindings XBOX360 Generic - Inventory/"toggle cl_run" - doublebind moveup - needed to Re-activate Flying after Landing
++POV1Up "toggle cl_run"
++doublebind POV1Up +moveup
++POV1Down invuse
++POV1Left invprev
++POV1Right invnext
 +
 +
 +
 +
 +
++// @LINE #77 END +JoyMappings

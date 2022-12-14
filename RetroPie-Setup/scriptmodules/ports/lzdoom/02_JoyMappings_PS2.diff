@@ -1,6 +1,6 @@
 diff -ur a/src/posix/sdl/i_joystick.cpp b/src/posix/sdl/i_joystick.cpp
---- a/src/posix/sdl/i_joystick.cpp	2021-01-24 12:24:51.000000000 -0500
-+++ b/src/posix/sdl/i_joystick.cpp	2022-04-05 14:51:34.269353042 -0400
+--- a/src/posix/sdl/i_joystick.cpp	[lzdoom 3.87c SOURCE]
++++ b/src/posix/sdl/i_joystick.cpp	[lzdoom 3.87c SIJL]
 @@ -147,7 +147,7 @@
  				info.Name.Format("Axis %d", i+1);
  			else
@@ -20,8 +20,8 @@ diff -ur a/src/posix/sdl/i_joystick.cpp b/src/posix/sdl/i_joystick.cpp
  class SDLInputJoystickManager
  {
 diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
---- a/wadsrc/static/defbinds.txt	2021-01-24 12:24:51.000000000 -0500
-+++ b/wadsrc/static/defbinds.txt	2022-04-06 17:00:18.191985983 -0400
+--- a/wadsrc/static/defbinds.txt	[lzdoom 3.87c SOURCE]
++++ b/wadsrc/static/defbinds.txt	[lzdoom 3.87c SIJL]
 @@ -83,3 +83,52 @@
  mapbind kp+ +am_zoomin
  mapbind mwheelup "am_zoom 1.2"
@@ -62,7 +62,7 @@ diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
 +Axis1Minus +left
 +Axis1Plus +right
 +
-+// D-Pad Bindings Hat
++// D-Pad Bindings
 +POV1Up +forward
 +POV1Down +back
 +POV1Left +left
