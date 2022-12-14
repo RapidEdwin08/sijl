@@ -19,13 +19,13 @@ When Compiled from Source [lzdoom.ini] will populate your Selected Joy Pad Bindi
 Can be ran from retropiemenu:  
 
 ```bash
-wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/lzdoom-sijl.sh -P ~/RetroPie/retropiemenu
-wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/lzdoom-sijl.png -P ~/RetroPie/retropiemenu/icons
+wget https://raw.githubusercontent.com/RapidEdwin08/sijl/3.88b/lzdoom-sijl.sh -P ~/RetroPie/retropiemenu
+wget https://raw.githubusercontent.com/RapidEdwin08/sijl/3.88b/lzdoom-sijl.png -P ~/RetroPie/retropiemenu/icons
 ```
 0r Can be ran manually from any directory:  
 ```bash
 cd ~
-git clone https://github.com/RapidEdwin08/sijl.git
+git clone -b 3.88b https://github.com/RapidEdwin08/sijl.git
 sudo chmod 755 ~/sijl/lzdoom-sijl.sh
 cd ~/sijl && ./lzdoom-sijl.sh
 ```
@@ -41,7 +41,7 @@ cd ~/sijl && ./lzdoom-sijl.sh
 
 # Changes to lzdoom v3.88b Source before compiling:  
 
-***[lzdoom.sh] v3.87c RetroPie-Setup Installer Script:***  
+***[lzdoom.sh] v3.88b RetroPie-Setup Installer Script:***  
 local params=("+fullscreen 1 -config $romdir/ports/doom/lzdoom.ini")  
 snd_mididevice, -2 (Timidity++)  
 mkRomDir "ports/doom/mods"  
@@ -81,7 +81,7 @@ POV1Left +left
 POV1Right +right  
   
 **0ptional:**
-*You can Tweak the [02_JoyMappings_CUSTOM.diff] file, just make sure to maintain the same number of +//Lines #80+ #78Empty.*  
+*You can Tweak the [02_JoyMappings_CUSTOM.diff] file, just make sure to maintain the same number of +//Lines #80+ #81Empty.*  
 
 ***SOURCES:***
 [https://github.com/drfrag666/gzdoom](https://github.com/drfrag666/gzdoom/releases/tag/3.88b)  
