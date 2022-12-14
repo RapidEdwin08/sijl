@@ -85,4 +85,4 @@ POV1Right +right
 
 ***SOURCES:***
 [https://github.com/drfrag666/gzdoom](https://github.com/drfrag666/gzdoom/releases/tag/3.87c)  
-[https://github.com/RetroPie/RetroPie-Setup/tree/master/scriptmodules/ports/lzdoom](https://github.com/RetroPie/RetroPie-Setup/blob/master/scriptmodules/ports/lzdoom.sh)  
+[https://github.com/RetroPie/RetroPie-Setup/tree/master/scriptmodules/ports/lzdoom](https://github.com/RetroPie/RetroPie-Setup/blob/4.8/scriptmodules/ports/lzdoom.sh)  
