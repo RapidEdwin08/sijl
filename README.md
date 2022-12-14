@@ -51,7 +51,7 @@ cl_rockettrails, 0
 r_maxparticles, 2500 (Lowered from 4000)  
 
 ***01_sijl_tweaks.diff:***  
-CNTRLMNU_OPEN_MAIN = "Open Main Menu";  
+~~CNTRLMNU_OPEN_MAIN = "Open Main Menu";~~ (No Longer Needed in v3.88b)  
 use_joystick, true  
 
 ***03_Preferences.diff:***  
