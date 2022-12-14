@@ -25,7 +25,7 @@ wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/lzdoom-sijl.png -P
 0r Can be ran manually from any directory:  
 ```bash
 cd ~
-git clone https://github.com/RapidEdwin08/sijl.git
+git clone -b 3.87c https://github.com/RapidEdwin08/sijl.git
 sudo chmod 755 ~/sijl/lzdoom-sijl.sh
 cd ~/sijl && ./lzdoom-sijl.sh
 ```
