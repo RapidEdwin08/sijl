@@ -7,7 +7,7 @@ Additionally includes Pre-Configured Joypad Mappings + Raspberry Pi specific Twe
 
 This isn't really new, it was started a long time ago under this topic:  
 *Zdoom and Gampad Fully Working in MENU with NO KEYBOARD*  
-This is just Updated [rpi_fixes.diff] and slightly tweaked [lzdoom.sh] for lzdoom v3.87c  
+This is just Updated [rpi_fixes.diff] and slightly tweaked [lzdoom.sh] for lzdoom  
 
 # How To  
 1- Use [lzdoom-sijl.sh] Menu driven Script to assist with [sh/diff] files placement.  
