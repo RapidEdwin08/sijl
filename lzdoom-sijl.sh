@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # https://github.com/RapidEdwin08/sijl
 version=202212
-ZDversion=3.87c
+ZDversion=3.88b
 sijlREPO=$ZDversion
 
 customJOYpad=$(
