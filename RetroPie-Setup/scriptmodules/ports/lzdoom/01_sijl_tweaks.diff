@@ -1,6 +1,6 @@
 diff -ur a/src/m_joy.cpp b/src/m_joy.cpp
---- a/src/m_joy.cpp	[lzdoom 3.87c SOURCE]
-+++ b/src/m_joy.cpp	[lzdoom 3.87c SIJL]
+--- a/src/m_joy.cpp	[lzdoom 3.88b SOURCE]
++++ b/src/m_joy.cpp	[lzdoom 3.88b SIJL]
 @@ -55,7 +55,7 @@
  
  // PUBLIC DATA DEFINITIONS -------------------------------------------------
@@ -11,8 +11,8 @@ diff -ur a/src/m_joy.cpp b/src/m_joy.cpp
  #ifdef _WIN32
  	joy_ps2raw.Callback();
 diff -ur a/src/posix/sdl/i_input.cpp b/src/posix/sdl/i_input.cpp
---- a/src/posix/sdl/i_input.cpp	[lzdoom 3.87c SOURCE]
-+++ b/src/posix/sdl/i_input.cpp	[lzdoom 3.87c SIJL]
+--- a/src/posix/sdl/i_input.cpp	[lzdoom 3.88b SOURCE]
++++ b/src/posix/sdl/i_input.cpp	[lzdoom 3.88b SIJL]
 @@ -204,12 +204,10 @@
  {
  	// Clear out any mouse movement.
@@ -34,25 +34,3 @@ diff -ur a/src/posix/sdl/i_input.cpp b/src/posix/sdl/i_input.cpp
  	
  	bool wantNative = !focus || (!use_mouse || GUICapture || paused || demoplayback || !inGame());
  
-diff -ur a/wadsrc/static/language.enu b/wadsrc/static/language.enu
---- a/wadsrc/static/language.enu	[lzdoom 3.87c SOURCE]
-+++ b/wadsrc/static/language.enu	[lzdoom 3.87c SIJL]
-@@ -1788,6 +1788,7 @@
- CNTRLMNU_OPEN_LOAD				= "Open Load Menu";
- CNTRLMNU_OPEN_OPTIONS				= "Open Options Menu";
- CNTRLMNU_OPEN_DISPLAY				= "Open Display Menu";
-+CNTRLMNU_OPEN_MAIN				= "Open Main Menu";
- CNTRLMNU_QUICKSAVE				= "Quicksave";
- CNTRLMNU_QUICKLOAD				= "Quickload";
- CNTRLMNU_EXIT_TO_MAIN				= "Exit to Main Menu";
-diff -ur a/wadsrc/static/menudef.txt b/wadsrc/static/menudef.txt
---- a/wadsrc/static/menudef.txt	[lzdoom 3.87c SOURCE]
-+++ b/wadsrc/static/menudef.txt	[lzdoom 3.87c SIJL]
-@@ -634,6 +634,7 @@
- 	Control    "$CNTRLMNU_SCREENSHOT"      , "screenshot"
- 	Control    "$CNTRLMNU_CONSOLE"         , "toggleconsole"
- 	Control    "$CNTRLMNU_PAUSE"           , "pause"
-+	Control    "$CNTRLMNU_OPEN_MAIN"       , "menu_main"
- 
- 	StaticText ""
- 	Control    "$CNTRLMNU_DISPLAY_INC"     , "sizeup"

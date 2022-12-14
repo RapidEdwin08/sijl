@@ -1,6 +1,6 @@
 diff -ur a/src/posix/sdl/i_joystick.cpp b/src/posix/sdl/i_joystick.cpp
---- a/src/posix/sdl/i_joystick.cpp	[lzdoom 3.87c SOURCE]
-+++ b/src/posix/sdl/i_joystick.cpp	[lzdoom 3.87c SIJL]
+--- a/src/posix/sdl/i_joystick.cpp	[lzdoom 3.88b SOURCE]
++++ b/src/posix/sdl/i_joystick.cpp	[lzdoom 3.88b SIJL]
 @@ -147,7 +147,7 @@
  				info.Name.Format("Axis %d", i+1);
  			else
@@ -20,9 +20,9 @@ diff -ur a/src/posix/sdl/i_joystick.cpp b/src/posix/sdl/i_joystick.cpp
  class SDLInputJoystickManager
  {
 diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
---- a/wadsrc/static/defbinds.txt	[lzdoom 3.87c SOURCE]
-+++ b/wadsrc/static/defbinds.txt	[lzdoom 3.87c SIJL]
-@@ -83,3 +83,52 @@
+--- a/wadsrc/static/defbinds.txt	[lzdoom 3.88b SOURCE]
++++ b/wadsrc/static/defbinds.txt	[lzdoom 3.88b SIJL]
+@@ -83,3 +83,55 @@
  mapbind kp+ +am_zoomin
  mapbind mwheelup "am_zoom 1.2"
  mapbind mwheeldown "am_zoom -1.2"
@@ -57,11 +57,18 @@ diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
 +Joy11 centerview
 +doublebind Joy11 +jump
 +
-+// //Reference// D-Pad Bindings XBOX360 0riginal - Use POV# Instead for Compatibility with Generic - Avoids Double Input Joy#+POV#
++// //Reference// D-Pad Bindings XBOX360 0riginal - L/R Turning
 +//Joy12 +left
 +//Joy13 +right
 +//Joy14 +forward
 +//Joy15 +back
++
++// D-Pad Bindings XBOX360 0riginal - Use POV# Instead for Compatibility with Generic - Avoids Double Input Joy#+POV#
++//Joy12 invprev
++//Joy13 invnext
++//Joy14 "toggle cl_run"
++//doublebind Joy14 +moveup
++//Joy15 invuse
 +
 +// POV D-Pad Bindings XBOX360 Generic - Inventory/"toggle cl_run" - doublebind moveup - needed to Re-activate Flying after Landing
 +POV1Up "toggle cl_run"
@@ -70,8 +77,4 @@ diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
 +POV1Left invprev
 +POV1Right invnext
 +
-+
-+
-+
-
-+// @LINE #77 END +JoyMappings
++// @LINE #80 END +JoyMappings

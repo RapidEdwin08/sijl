@@ -1,6 +1,6 @@
 diff -ur a/src/posix/sdl/i_joystick.cpp b/src/posix/sdl/i_joystick.cpp
---- a/src/posix/sdl/i_joystick.cpp	[lzdoom 3.87c SOURCE]
-+++ b/src/posix/sdl/i_joystick.cpp	[lzdoom 3.87c SIJL]
+--- a/src/posix/sdl/i_joystick.cpp	[lzdoom 3.88b SOURCE]
++++ b/src/posix/sdl/i_joystick.cpp	[lzdoom 3.88b SIJL]
 @@ -147,7 +147,7 @@
  				info.Name.Format("Axis %d", i+1);
  			else
@@ -20,9 +20,9 @@ diff -ur a/src/posix/sdl/i_joystick.cpp b/src/posix/sdl/i_joystick.cpp
  class SDLInputJoystickManager
  {
 diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
---- a/wadsrc/static/defbinds.txt	[lzdoom 3.87c SOURCE]
-+++ b/wadsrc/static/defbinds.txt	[lzdoom 3.87c SIJL]
-@@ -83,3 +83,52 @@
+--- a/wadsrc/static/defbinds.txt	[lzdoom 3.88b SOURCE]
++++ b/wadsrc/static/defbinds.txt	[lzdoom 3.88b SIJL]
+@@ -83,3 +83,55 @@
  mapbind kp+ +am_zoomin
  mapbind mwheelup "am_zoom 1.2"
  mapbind mwheeldown "am_zoom -1.2"
@@ -33,39 +33,37 @@ diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
 +
 +// Joypad 10+ Button Bindings - Shanwan PC/PS3/Android with Apps+WebBack - x4 Axes - Triggers as Buttons
 +Joy1 +jump
-+doublebind Joy1 +moveup
 +Joy2 +use
-+doublebind Joy2 invuse
-+Joy4 +strafe
-+doublebind Joy4 crouch
++doublebind Joy2 land
++Joy4 +crouch
++doublebind Joy4 +movedown
 +Joy5 +speed
-+doublebind Joy5 +movedown
++doublebind Joy5 +reload
++
 +Joy7 weapprev
-+doublebind Joy7 invprev
 +Joy8 weapnext
-+doublebind Joy8 invnext
 +Joy9 +altattack
 +Joy10 +attack
++
 +Joy11 togglemap
 +Joy12 menu_main
 +
-+// Pair Button/Analog Sticks Bindings
++// Analog Stick Press Buttons +doublebinds for Flying/Swimming - Using Jump instead of moveup to avoid accidental Activation of Wings of Wrath
 +Joy14 +speed
++doublebind Joy14 +movedown
 +Joy15 centerview
-+doublebind Joy15 land
-+Apps "toggle cl_run"
-+WebBack "showpop 1"
++doublebind Joy15 +jump
 +
-+// D-Pad Bindings
-+POV1Up +forward
-+POV1Down +back
-+POV1Left +left
-+POV1Right +right
++// Xtra Android Buttons - MissonObjectives/"toggle cl_run"
++Apps "showpop 1"
++WebBack "toggle cl_run"
 +
-+
-+
-+
-+
++// POV D-Pad Bindings - Inventory/"toggle cl_run" - doublebind moveup - needed to Re-activate Flying after Landing
++POV1Up "toggle cl_run"
++doublebind POV1Up +moveup
++POV1Down invuse
++POV1Left invprev
++POV1Right invnext
 +
 +
 +
@@ -75,3 +73,8 @@ diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
 +
 +
 +
++
++
++
++
++// @LINE #80 END +JoyMappings

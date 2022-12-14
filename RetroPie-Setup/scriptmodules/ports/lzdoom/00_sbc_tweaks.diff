@@ -1,6 +1,6 @@
 diff -ur a/src/p_effect.cpp b/src/p_effect.cpp
---- a/src/p_effect.cpp	[lzdoom 3.87c SOURCE]
-+++ b/src/p_effect.cpp	[lzdoom 3.87c SIJL]
+--- a/src/p_effect.cpp	[lzdoom 3.88b SOURCE]
++++ b/src/p_effect.cpp	[lzdoom 3.88b SIJL]
 @@ -56,7 +56,7 @@
  #include "g_levellocals.h"
  #include "vm.h"

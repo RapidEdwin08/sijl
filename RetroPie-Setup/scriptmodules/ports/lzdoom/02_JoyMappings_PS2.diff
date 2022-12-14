@@ -1,6 +1,6 @@
 diff -ur a/src/posix/sdl/i_joystick.cpp b/src/posix/sdl/i_joystick.cpp
---- a/src/posix/sdl/i_joystick.cpp	[lzdoom 3.87c SOURCE]
-+++ b/src/posix/sdl/i_joystick.cpp	[lzdoom 3.87c SIJL]
+--- a/src/posix/sdl/i_joystick.cpp	[lzdoom 3.88b SOURCE]
++++ b/src/posix/sdl/i_joystick.cpp	[lzdoom 3.88b SIJL]
 @@ -147,7 +147,7 @@
  				info.Name.Format("Axis %d", i+1);
  			else
@@ -20,9 +20,9 @@ diff -ur a/src/posix/sdl/i_joystick.cpp b/src/posix/sdl/i_joystick.cpp
  class SDLInputJoystickManager
  {
 diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
---- a/wadsrc/static/defbinds.txt	[lzdoom 3.87c SOURCE]
-+++ b/wadsrc/static/defbinds.txt	[lzdoom 3.87c SIJL]
-@@ -83,3 +83,52 @@
+--- a/wadsrc/static/defbinds.txt	[lzdoom 3.88b SOURCE]
++++ b/wadsrc/static/defbinds.txt	[lzdoom 3.88b SIJL]
+@@ -83,3 +83,55 @@
  mapbind kp+ +am_zoomin
  mapbind mwheelup "am_zoom 1.2"
  mapbind mwheeldown "am_zoom -1.2"
@@ -33,45 +33,48 @@ diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
 +
 +// PS2 Shanwan USB Wirelesscontroller - x4 Axes - Triggers as Buttons - D-Pad Analog+Digital
 +Joy1 +speed
-+doublebind Joy1 +movedown
++doublebind Joy1 +reload
 +Joy2 +use
-+doublebind Joy2 invuse
++doublebind Joy2 land
 +Joy3 +jump
-+doublebind Joy3 +moveup
-+Joy4 +strafe
-+doublebind Joy4 crouch
++Joy4 +crouch
++doublebind Joy4 +movedown
++
 +Joy5 weapprev
-+doublebind Joy5 invprev
 +Joy6 weapnext
-+doublebind Joy6 invnext
 +Joy7 +altattack
 +Joy8 +attack
++
 +Joy9 togglemap
 +Joy10 menu_main
 +
-+// Pair Button/Analog Sticks Bindings
++// Analog Stick Press Buttons +doublebinds for Flying/Swimming - Using Jump instead of moveup to avoid accidental Activation of Wings of Wrath
 +Joy11 +speed
++doublebind Joy11 +movedown
 +Joy12 centerview
-+doublebind Joy12 land
-+Joy13 "toggle cl_run"
-+doublebind Joy13 "showpop 1"
++doublebind Joy13 +jump
 +
-+// D-Pad Bindings
-+Axis2Minus +forward
-+Axis2Plus +back
-+Axis1Minus +left
-+Axis1Plus +right
++// Pair Button - MissonObjectives
++Joy13 "showpop 1
 +
-+// D-Pad Bindings
-+POV1Up +forward
-+POV1Down +back
-+POV1Left +left
-+POV1Right +right
++// //Reference// D-Pad Bindings - L/R Turning Analog Mode
++//Axis2Minus +forward
++//Axis2Plus +back
++//Axis1Minus +left
++//Axis1Plus +right
 +
-+
-+
-+
++// POV D-Pad Bindings - Inventory/"toggle cl_run" - doublebind moveup - needed to Re-activate Flying after Landing
++POV1Up "toggle cl_run"
++doublebind POV1Up +moveup
++POV1Down invuse
++POV1Left invprev
++POV1Right invnext
 +
 +
 +
 +
++
++
++
++
++// @LINE #80 END +JoyMappings

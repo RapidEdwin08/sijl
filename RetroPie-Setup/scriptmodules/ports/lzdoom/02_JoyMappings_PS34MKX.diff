@@ -1,6 +1,6 @@
 diff -ur a/src/posix/sdl/i_joystick.cpp b/src/posix/sdl/i_joystick.cpp
---- a/src/posix/sdl/i_joystick.cpp	[lzdoom 3.87c SOURCE]
-+++ b/src/posix/sdl/i_joystick.cpp	[lzdoom 3.87c SIJL]
+--- a/src/posix/sdl/i_joystick.cpp	[lzdoom 3.88b SOURCE]
++++ b/src/posix/sdl/i_joystick.cpp	[lzdoom 3.88b SIJL]
 @@ -147,7 +147,7 @@
  				info.Name.Format("Axis %d", i+1);
  			else
@@ -20,9 +20,9 @@ diff -ur a/src/posix/sdl/i_joystick.cpp b/src/posix/sdl/i_joystick.cpp
  class SDLInputJoystickManager
  {
 diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
---- a/wadsrc/static/defbinds.txt	[lzdoom 3.87c SOURCE]
-+++ b/wadsrc/static/defbinds.txt	[lzdoom 3.87c SIJL]
-@@ -83,3 +83,52 @@
+--- a/wadsrc/static/defbinds.txt	[lzdoom 3.88b SOURCE]
++++ b/wadsrc/static/defbinds.txt	[lzdoom 3.88b SIJL]
+@@ -83,3 +83,55 @@
  mapbind kp+ +am_zoomin
  mapbind mwheelup "am_zoom 1.2"
  mapbind mwheeldown "am_zoom -1.2"
@@ -60,7 +60,7 @@ diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
 +// Pair Button
 +Joy13 "toggle cl_run"
 +
-+// D-Pad Bindings
++// D-Pad Bindings Hat
 +POV1Up +forward
 +POV1Down +back
 +POV1Left +left
@@ -74,4 +74,7 @@ diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
 +
 +
 +
-+// @LINE #77 END +JoyMappings
++
++
++
++// @LINE #80 END +JoyMappings

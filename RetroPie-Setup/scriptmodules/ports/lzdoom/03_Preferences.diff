@@ -1,6 +1,6 @@
 diff -ur a/src/am_map.cpp b/src/am_map.cpp
---- a/src/am_map.cpp	[lzdoom 3.87c SOURCE]
-+++ b/src/am_map.cpp	[lzdoom 3.87c SIJL]
+--- a/src/am_map.cpp	[lzdoom 3.88b SOURCE]
++++ b/src/am_map.cpp	[lzdoom 3.88b SIJL]
 @@ -90,7 +90,7 @@
  CVAR (Bool,  am_showitems,			false,		CVAR_ARCHIVE);
  CVAR (Bool,  am_showtime,			true,		CVAR_ARCHIVE);
@@ -11,8 +11,8 @@ diff -ur a/src/am_map.cpp b/src/am_map.cpp
  CVAR (Int,   am_map_secrets,		1,			CVAR_ARCHIVE);
  CVAR (Int,	 am_drawmapback,		1,			CVAR_ARCHIVE);
 diff -ur a/src/g_game.cpp b/src/g_game.cpp
---- a/src/g_game.cpp	[lzdoom 3.87c SOURCE]
-+++ b/src/g_game.cpp	[lzdoom 3.87c SIJL]
+--- a/src/g_game.cpp	[lzdoom 3.88b SOURCE]
++++ b/src/g_game.cpp	[lzdoom 3.88b SIJL]
 @@ -129,7 +129,7 @@
  CVAR (Bool, chasedemo, false, 0);
  CVAR (Bool, storesavepic, true, CVAR_ARCHIVE|CVAR_GLOBALCONFIG)
@@ -22,16 +22,7 @@ diff -ur a/src/g_game.cpp b/src/g_game.cpp
  CVAR (Bool, cl_waitforsave, true, CVAR_ARCHIVE | CVAR_GLOBALCONFIG);
  CVAR (Bool, enablescriptscreenshot, false, CVAR_ARCHIVE | CVAR_GLOBALCONFIG);
  EXTERN_CVAR (Float, con_midtime);
-@@ -235,7 +235,7 @@
- 
- #define SLOWTURNTICS	6 
- 
--CVAR (Bool,		cl_run,			true,	CVAR_GLOBALCONFIG|CVAR_ARCHIVE)		// Always run?
-+CVAR (Bool,		cl_run,			false,	CVAR_GLOBALCONFIG|CVAR_ARCHIVE)		// Always run?
- CVAR (Bool,		invertmouse,	false,	CVAR_GLOBALCONFIG|CVAR_ARCHIVE)		// Invert mouse look down/up?
- CVAR (Bool,		invertmousex,	false,	CVAR_GLOBALCONFIG|CVAR_ARCHIVE)		// Invert mouse look left/right?
- CVAR (Bool,		freelook,		true,	CVAR_GLOBALCONFIG|CVAR_ARCHIVE)		// Always mlook?
-@@ -2104,7 +2104,7 @@
+@@ -2110,7 +2110,7 @@
  
  CVAR (Int, autosavenum, 0, CVAR_NOSET|CVAR_ARCHIVE|CVAR_GLOBALCONFIG)
  static int nextautosave = -1;
@@ -41,8 +32,8 @@ diff -ur a/src/g_game.cpp b/src/g_game.cpp
  CUSTOM_CVAR (Int, autosavecount, 4, CVAR_ARCHIVE|CVAR_GLOBALCONFIG)
  {
 diff -ur a/src/g_statusbar/shared_sbar.cpp b/src/g_statusbar/shared_sbar.cpp
---- a/src/g_statusbar/shared_sbar.cpp	[lzdoom 3.87c SOURCE]
-+++ b/src/g_statusbar/shared_sbar.cpp	[lzdoom 3.87c SIJL]
+--- a/src/g_statusbar/shared_sbar.cpp	[lzdoom 3.88b SOURCE]
++++ b/src/g_statusbar/shared_sbar.cpp	[lzdoom 3.88b SIJL]
 @@ -110,7 +110,7 @@
  CVAR (Flag, pf_hazard,		paletteflash, PF_HAZARD)
  
@@ -70,8 +61,8 @@ diff -ur a/src/g_statusbar/shared_sbar.cpp b/src/g_statusbar/shared_sbar.cpp
  CUSTOM_CVAR(Int, am_showmaplabel, 2, CVAR_ARCHIVE)
  {
 diff -ur a/src/v_draw.cpp b/src/v_draw.cpp
---- a/src/v_draw.cpp	[lzdoom 3.87c SOURCE]
-+++ b/src/v_draw.cpp	[lzdoom 3.87c SIJL]
+--- a/src/v_draw.cpp	[lzdoom 3.88b SOURCE]
++++ b/src/v_draw.cpp	[lzdoom 3.88b SIJL]
 @@ -64,7 +64,7 @@
  #include "textures.h"
  #include "vm.h"
