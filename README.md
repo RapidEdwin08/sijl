@@ -81,7 +81,7 @@ POV1Left +left
 POV1Right +right  
   
 **0ptional:**
-*You can Tweak the [02_JoyMappings_CUSTOM.diff] file, just make sure to maintain the same number of +//Lines #77+ #78Empty.*  
+*You can Tweak the [02_JoyMappings_CUSTOM.diff] file, just make sure to maintain the same number of +//Lines #80+ #78Empty.*  
 
 ***SOURCES:***
 [https://github.com/drfrag666/gzdoom](https://github.com/drfrag666/gzdoom/releases/tag/3.88b)  
