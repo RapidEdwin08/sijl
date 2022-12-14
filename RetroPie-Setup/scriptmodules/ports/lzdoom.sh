@@ -39,7 +39,7 @@ function sources_lzdoom() {
 	fi
 	# Apply SDL JoyPad Tweaks https://retropie.org.uk/forum/topic/16078/zdoom-and-gampad-fully-working-in-menu-with-no-keyboard
 	applyPatch "$md_data/01_sijl_tweaks.diff"
-	applyPatch "$md_data/02_JoyMappings_XBOX360_TriggerAxis.diff"
+	applyPatch "$md_data/02_JoyMappings_0SFA.diff"
 	applyPatch "$md_data/03_Preferences.diff" #ENABLED
 }
 
