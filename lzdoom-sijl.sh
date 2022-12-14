@@ -1,19 +1,21 @@
 #!/usr/bin/env bash
 # https://github.com/RapidEdwin08/sijl
 version=202212
+ZDversion=3.87c
+sijlREPO=$ZDversion
 
 customJOYpad=$(
 echo ""
 echo '      JOY ?  /=====\            CUSTOM             /=====\  JOY ?  '
 echo '    JOY ? ,-`/=====\`.--------------------------.-`/=====\``. JOY ? '
-echo '         /   | /|\ |  `.    <-)         |=|    .`  |JOY? |   \   '
-echo '        / ___|  |  |___ \ JOY ??       JOY ?? / ___| (_) |___ \   '
-echo '       / |      |      | ;  __           _   ; |?_JOY   JOY_?| ;   '
+echo '         /   |JOY??|  `.    <-)         |=|    .`  |JOY? |   \   '
+echo '        / ___| /|\ |___ \ JOY ??       JOY ?? / ___| (_) |___ \   '
+echo '       / |JOY?? | JOY??| ;  __           _   ; |?_JOY   JOY_?| ;   '
 echo '       | |<--- POV --->| | |__|         |_:> | |(_)       (_)| |   '
 echo '       | |___   |   ___| ; JOY ??     JOY ?? ; |___JOY_?  ___| ;   '
-echo '       |\    |  |  |    /  _      ___     _   \    | (_) |    /|   '
+echo '       |\    |JOY??|    /  _      ___     _   \    | (_) |    /|   '
 echo '       | \   |_\|/_|  .`,`` ``,  |___| ,`` ``, `.  |_____|  .` |   '
-echo '       |  `-.______.-` /       \ JOY? /       \  `-._____.-`   |   '
+echo '       |  `-.______.-` /       \ JOY??/       \  `-._____.-`   |   '
 echo '       |               | Axis? |------| Axis? |                |   '
 echo '       |              /\   ?   /      \   ?   /\               |   '
 echo '       |             /  `.___.`        `.___.`  \              |   '
@@ -178,13 +180,13 @@ echo '         /   _       -----------------------------           \   '
 echo '        / ,`` ``,         Joy_7       Joy_8         JOY4      \   '
 echo '       | /       \         |__|         |_:>         (_)       ;   '
 echo '       | | Axis1 |   _____         _            3_JOY   JOY_2  |   '
-echo '       | \   2   /  | /|\ |      ,```,          (_)       (_)  ;   '
-echo '       |  `.___.` __|  |  |__    `._.`       _     JOY_1       |   '
+echo '       | \   2   /  |JOY14|      ,```,          (_)       (_)  ;   '
+echo '       |  `.___.` __| /|\ |__    `._.`       _     JOY_1       |   '
 echo '       | JOY10   |<--- | --->|   Joy 9    ,`` ``,    (_)       |   '
 echo '       |         |__  POV  __|           /       \             |   '
-echo '       |            |  |  |              | Axis4 |             |   '
+echo '       |      JOY12 |  |  | JOY13        | Axis4 |             |   '
 echo '       |            |_\|/_|              \   5   /             |   '
-echo '       |                                  `.___.`JOY11         |   '
+echo '       |             JOY15                `.___.`JOY11         |   '
 echo '        \           /````````````````````````````\            /   '
 echo '         \_________/   XBOX 360 Triggers As Axes  \__________/   '
 )
@@ -197,13 +199,13 @@ echo '         /   _       -----------------------------           \   '
 echo '        / ,`` ``,         Joy_9       Joy_10        JOY4      \   '
 echo '       | /       \         |__|         |_:>         (_)       ;   '
 echo '       | | Axis1 |   _____         _            3_JOY   JOY_2  |   '
-echo '       | \   2   /  | /|\ |      ,```,          (_)       (_)  ;   '
+echo '       | \   2   /  |JOY14|      ,```,          (_)       (_)  ;   '
 echo '       |  `.___.` __|  |  |__    `._.`       _     JOY_1       |   '
 echo '       | JOY12   |<--- | --->|  Joy 11    ,`` ``,    (_)       |   '
 echo '       |         |__  POV  __|           /       \             |   '
-echo '       |            |  |  |              | Axis3 |             |   '
+echo '       |      JOY16 |  |  | JOY17        | Axis3 |             |   '
 echo '       |            |_\|/_|              \   4   /             |   '
-echo '       |                                  `.___.`JOY13         |   '
+echo '       |             JOY15                `.___.`JOY13         |   '
 echo '        \           /````````````````````````````\            /   '
 echo '         \_________/ XBOX 360 Triggers As Buttons \__________/   '
 )
@@ -219,7 +221,7 @@ diffsREF=$(
 echo '
 [00_sbc_tweaks.diff]: (0nly Applied to rPi/Odroid)
 cl_rockettrails, 0
-r_maxparticles, 3000 (Lowered from 4000)
+r_maxparticles, 2500 (Lowered from 4000)
 
 [01_sijl_tweaks.diff]:
 CNTRLMNU_OPEN_MAIN = "Open Main Menu";
@@ -227,11 +229,27 @@ use_joystick, true
 
 [03_Preferences.diff]:
 am_colorset, 1 (Traditional Doom)
-cl_run, false (Always Run?)
+~~cl_run, false (Always Run?)~~
 st_scale, 2
 Crosshair (Cross 1 Green)
 save_dir=$DOOMWADDIR
 disableautosave=2'
+)
+
+xpadPATCHinfo=$(
+echo '
+Default [xpad] Driver contains [01_enable_leds_and_trigmapping.diff]
+This Patch can cause Issues with SDL Right Stick Axis on some JoyPads
+
+See More Here: https://github.com/RetroPie/RetroPie-Setup/issues/3379
+xpad triggers_to_buttons=1 patch breaks SDL gamepad mappings #3379
+
+DISABLE [trigmapping] IF your Right Stick Axis is not fully functional
+eg. in 0ther Ports such as eduke32 tyrquake yquake2 ect...
+
+With trigmapping Patch ENABLED the Triggers are Mapped as Buttons
+With trigmapping Patch DISABLED the Triggers are Mapped as Axes
+'
 )
 
 lineDIV=$(
@@ -258,7 +276,7 @@ if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tw
 fi
 
 # Confirm Configurations
-confLZJOY=$(dialog --stdout --no-collapse --title "SDL Input Joystick for LZDoom [sijl] by: RapidEdwin08 [$version]" \
+confLZJOY=$(dialog --stdout --no-collapse --title "SDL Input Joystick for LZDoom v$ZDversion [sijl] by: RapidEdwin08 [$version]" \
 	--ok-label OK --cancel-label EXIT \
 	--menu "$pijoysdlLOGOmenu" 25 75 20 \
 	J "><  SELECT [JoyMapping.diff]  ><" \
@@ -266,21 +284,23 @@ confLZJOY=$(dialog --stdout --no-collapse --title "SDL Input Joystick for LZDoom
 	S "><  OPEN [RetroPie-Setup]  ><" \
 	I "><  INSTALL [sijl]  to  [RetroPie-Setup\..\ports]  ><" \
 	U "><  REMOVE  [sijl] from [RetroPie-Setup\..\ports]  ><" \
+	X "><  TOGGLE  [xpad] Driver TriggerButton Patch  ><" \
 	R "><  REFERENCES  ><")
 
 if [ "$confLZJOY" == 'J' ]; then mappingLZJOY; fi
 if [ "$confLZJOY" == 'P' ]; then preferencesLZJOY; fi
+if [ "$confLZJOY" == 'X' ]; then xpadDRIVERpatch; fi
 
 if [ "$confLZJOY" == 'S' ]; then
-	confiRPsetup=$(dialog --stdout --no-collapse --title " RetroPie Setup -> Manage Packages -> Manage optional packages -> lzdoom" \
+	confiRPsetup=$(dialog --stdout --no-collapse --title " RetroPie Setup -> Manage Packages" \
 		--ok-label OK --cancel-label Back \
-		--menu "                          ? ARE YOU SURE ?              $sijlREFS $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep 'applyPatch' | awk '{$1=$1};1' )" 25 75 20 \
+		--menu "                          ? ARE YOU SURE ?              $sijlREFS $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep 'applyPatch' | awk '{$1=$1};1' ) $lineDIV  RetroPie Setup -> Manage Packages -> Manage driver packages -> xpad $(cat ~/RetroPie-Setup/scriptmodules/supplementary/xpad.sh | grep '01_enable_leds' | awk '{$1=$1};1' )" 25 75 20 \
 		Y "YES OPEN [RetroPie-Setup]" \
 		B "BACK")
 	if [ "$confiRPsetup" == 'Y' ]; then
-		sudo bash ~/RetroPie-Setup/retropie_setup.sh
+		cd ~/RetroPie-Setup/ && sudo bash ~/RetroPie-Setup/retropie_setup.sh
 		#sudo bash ~/RetroPie-Setup/retropie_packages.sh retropiemenu launch "/home/$USER/RetroPie-Setup/retropie_setup.sh" </dev/tty > /dev/tty
-		exit 0
+		#exit 0
 	fi
 	mainMENU
 fi
@@ -366,23 +386,29 @@ if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tw
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings*.diff 2>/dev/null
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/03_Preferences.diff 2>/dev/null
 	mkdir ~/RetroPie-Setup/scriptmodules/ports/lzdoom 2>/dev/null
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom.sh -P ~/RetroPie-Setup/scriptmodules/ports
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/00_sbc_tweaks.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/01_sijl_tweaks.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/03_Preferences.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	
+	# Get DIFFs
+	if [ "$ZDversion" == "3.88b" ]; then
+		if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/01_remove_cmake_arm_options.diff ]; then wget https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/scriptmodules/ports/lzdoom/01_remove_cmake_arm_options.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom; fi
+		if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_lzma_sdk_dont_force_arm_crc32.diff ]; then wget https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/scriptmodules/ports/lzdoom/02_lzma_sdk_dont_force_arm_crc32.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom; fi
+	fi
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/$sijlREPO/RetroPie-Setup/scriptmodules/ports/lzdoom.sh -P ~/RetroPie-Setup/scriptmodules/ports
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/$sijlREPO/RetroPie-Setup/scriptmodules/ports/lzdoom/00_sbc_tweaks.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/$sijlREPO/RetroPie-Setup/scriptmodules/ports/lzdoom/01_sijl_tweaks.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/$sijlREPO/RetroPie-Setup/scriptmodules/ports/lzdoom/03_Preferences.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
 	
 	# Multiple JoyMappings Options
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_0SFA.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_8Button.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_AndroidPCPS3.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_CUSTOM.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_N64.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PS2.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PS34.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PS34MKX.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PSXJoyRetro.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_XBOX360_TriggerAxis.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
-	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_XBOX360_TriggerButtons.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/$sijlREPO/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_0SFA.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/$sijlREPO/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_8Button.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/$sijlREPO/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_AndroidPCPS3.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/$sijlREPO/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_CUSTOM.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/$sijlREPO/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_N64.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/$sijlREPO/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PS2.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/$sijlREPO/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PS34.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/$sijlREPO/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PS34MKX.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/$sijlREPO/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_PSXJoyRetro.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/$sijlREPO/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_XBOX360_TriggerAxis.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/$sijlREPO/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_XBOX360_TriggerButtons.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
 	
 fi
 
@@ -547,7 +573,7 @@ if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMapp
 if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_XBOX360_TriggerButtons' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$xbox360bJOYpad; fi
 if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_CUSTOM.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$customJOYpad; fi
 
-dialog --no-collapse --title "SELECT [$joyMAPdiff]  *COMPLETE!* " --ok-label Back --msgbox "$sijlREFS $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep 'applyPatch' | awk '{$1=$1};1' ) $lineDIV $pijoysdlLOGOmenu $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom/$joyMAPdiff | grep "^+const EJoyAxis") $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom/$joyMAPdiff | tail -n 49)"  25 75
+dialog --no-collapse --title "SELECT [$joyMAPdiff]  *COMPLETE!* " --ok-label Back --msgbox "$sijlREFS $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep 'applyPatch' | awk '{$1=$1};1' ) $lineDIV $pijoysdlLOGOmenu $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom/$joyMAPdiff | grep "^+const EJoyAxis" | cut -d "{" -f2- | rev | cut -c 3- | rev) $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom/$joyMAPdiff | tail -n 52)"  25 75
 mappingLZJOY
 }
 
@@ -566,17 +592,47 @@ if [ "$confLZprefs" == '' ] || [ "$confLZprefs" == 'B' ]; then mainMENU; fi
 if [ "$confLZprefs" == '1' ]; then
 	joyMAPdiff=03_Preferences.diff
 	if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/"$joyMAPdiff" ]; then joymapDIFFmissing; fi
-	sed -i 's/#applyPatch\ \"\$md\_data\/03\_Preferences.*/applyPatch\ \"\$md\_data\/03_Preferences.diff\ #ENABLED\"/g' ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh
+	sed -i 's/#applyPatch\ \"\$md\_data\/03\_Preferences.*/applyPatch\ \"\$md\_data\/03_Preferences.diff\"\ #ENABLED/g' ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh
 fi
 
 if [ "$confLZprefs" == '2' ]; then
 	joyMAPdiff=03_Preferences.diff
 	if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom/"$joyMAPdiff" ]; then joymapDIFFmissing; fi
-	sed -i 's/applyPatch\ \"\$md\_data\/03\_Preferences.*/#applyPatch\ \"\$md\_data\/03_Preferences.diff\ #DISABLED\"/g' ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh
+	sed -i 's/#applyPatch\ \"\$md\_data\/03\_Preferences.*/applyPatch\ \"\$md\_data\/03_Preferences.diff\"\ #ENABLED/g' ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh
+	sed -i 's/applyPatch\ \"\$md\_data\/03\_Preferences.*/#applyPatch\ \"\$md\_data\/03_Preferences.diff\"\ #DISABLED/g' ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh
 fi
 
 dialog --no-collapse --title "TOGGLE [$joyMAPdiff]  *COMPLETE!* " --ok-label Back --msgbox "$sijlREFS $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep 'applyPatch' | awk '{$1=$1};1' ) $lineDIV $diffsREF"  25 75
 preferencesLZJOY
+}
+
+xpadDRIVERpatch()
+{
+
+confXPADdriver=$(dialog --stdout --no-collapse --title "TOGGLE [MAP_TRIGGERS_TO_BUTTONS] Patch for [xpad] Driver" \
+		--ok-label OK --cancel-label Back \
+		--menu "   $xpadPATCHinfo $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/supplementary/xpad.sh | grep '01_enable_leds' | awk '{$1=$1};1' )" 25 75 20 \
+		1 "[ENABLE]  MAP_TRIGGERS_TO_BUTTONS (DEFAULT)" \
+		2 "[DISABLE] MAP_TRIGGERS_TO_BUTTONS (NO trigmapping)" \
+		B "BACK")
+
+if [ "$confXPADdriver" == '' ] || [ "$confXPADdriver" == 'B' ]; then mainMENU; fi
+
+if [ "$confXPADdriver" == '1' ]; then
+	joyMAPdiff=01_enable_leds_and_trigmapping.diff
+	if [ ! -f ~/RetroPie-Setup/scriptmodules/supplementary/xpad/"$joyMAPdiff" ]; then joymapDIFFmissing; fi
+	sed -i 's/applyPatch\ \"\$md\_data\/01\_enable_leds.*/applyPatch\ \"\$md\_data\/01_enable_leds_and_trigmapping.diff\"/g' ~/RetroPie-Setup/scriptmodules/supplementary/xpad.sh
+fi
+
+if [ "$confXPADdriver" == '2' ]; then
+	joyMAPdiff=01_enable_leds_and_trigmapping.diff
+	if [ ! -f ~/RetroPie-Setup/scriptmodules/supplementary/xpad/"$joyMAPdiff" ]; then joymapDIFFmissing; fi
+	sed -i 's/applyPatch\ \"\$md\_data\/01\_enable\_leds.*/applyPatch\ \"\$md\_data\/01_enable_leds.diff\"\ #N0trigmapping/g' ~/RetroPie-Setup/scriptmodules/supplementary/xpad.sh
+	cat ~/RetroPie-Setup/scriptmodules/supplementary/xpad/01_enable_leds_and_trigmapping.diff | head -n 11 > ~/RetroPie-Setup/scriptmodules/supplementary/xpad/01_enable_leds.diff
+fi
+
+dialog --no-collapse --title "TOGGLE [$joyMAPdiff]  *COMPLETE!* " --ok-label Back --msgbox "RetroPie Setup -> Manage Packages -> Manage driver packages -> xpad -> Re-Install from SOURCE $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/supplementary/xpad.sh | grep '01_enable_leds' | awk '{$1=$1};1' )"  25 75
+xpadDRIVERpatch
 }
 
 joymapDIFFmissing()
