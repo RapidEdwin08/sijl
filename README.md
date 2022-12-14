@@ -1,5 +1,5 @@
-# SDL Input Joystick for LZDoom v3.87c (SIJL) for RetroPie  
-![lzdoom-sijl.png](https://raw.githubusercontent.com/RapidEdwin08/sijl/main/lzdoom-sijl.png)  
+# SDL Input Joystick for LZDoom v3.88b (SIJL) for RetroPie  
+![lzdoom-sijl.png](https://raw.githubusercontent.com/RapidEdwin08/sijl/3.88b/lzdoom-sijl.png)  
 
 Add support for SDL Input from Joystick in Menus eliminating the need for a Keyboard.  
 Additionally includes Pre-Configured Joypad Mappings + Raspberry Pi specific Tweaks  
@@ -39,7 +39,7 @@ cd ~/sijl && ./lzdoom-sijl.sh
 	</game>
 ```
 
-# Changes to lzdoom v3.87c Source before compiling:  
+# Changes to lzdoom v3.88b Source before compiling:  
 
 ***[lzdoom.sh] v3.87c RetroPie-Setup Installer Script:***  
 local params=("+fullscreen 1 -config $romdir/ports/doom/lzdoom.ini")  
@@ -84,5 +84,5 @@ POV1Right +right
 *You can Tweak the [02_JoyMappings_CUSTOM.diff] file, just make sure to maintain the same number of +//Lines #77+ #78Empty.*  
 
 ***SOURCES:***
-[https://github.com/drfrag666/gzdoom](https://github.com/drfrag666/gzdoom/releases/tag/3.87c)  
+[https://github.com/drfrag666/gzdoom](https://github.com/drfrag666/gzdoom/releases/tag/3.88b)  
 [https://github.com/RetroPie/RetroPie-Setup/tree/master/scriptmodules/ports/lzdoom](https://github.com/RetroPie/RetroPie-Setup/blob/master/scriptmodules/ports/lzdoom.sh)  
