@@ -46,7 +46,7 @@ local params=("+fullscreen 1 -config $romdir/ports/doom/lzdoom.ini")
 snd_mididevice, -2 (Timidity++)  
 mkRomDir "ports/doom/mods"  
 
-***00_sbc_tweaks.diff: (0nly Applied to rPi/Odroid)***  
+***00_sbc_tweaks.diff: (0nly Applied to rPi/arm)***  
 cl_rockettrails, 0  
 r_maxparticles, 2500 (Lowered from 4000)  
 
