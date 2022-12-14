@@ -13,7 +13,7 @@ This is just Updated [rpi_fixes.diff] and slightly tweaked [lzdoom.sh] for lzdoo
 1- Use [lzdoom-sijl.sh] Menu driven Script to assist with [sh/diff] files placement.  
 2- **Compile/Install [lzdoom] from [RetroPie-Setup]:**  
 0ptional Packages -> Ports -> lzdoom -> *INSTALL FROM SOURCE*  
-When Compiled from Source [lzdoom.ini] will always populate your Selected Joy Pad Bindings by *Default*  
+When Compiled from Source [lzdoom.ini] will populate your Selected Joy Pad Bindings by *Default*  
 
 # Installation  
 Can be ran from retropiemenu:  
@@ -48,7 +48,7 @@ mkRomDir "ports/doom/mods"
 
 ***00_sbc_tweaks.diff: (0nly Applied to rPi/Odroid)***  
 cl_rockettrails, 0  
-r_maxparticles, 3000 (Lowered from 4000)  
+r_maxparticles, 2500 (Lowered from 4000)  
 
 ***01_sijl_tweaks.diff:***  
 CNTRLMNU_OPEN_MAIN = "Open Main Menu";  
@@ -56,7 +56,7 @@ use_joystick, true
 
 ***03_Preferences.diff:***  
 am_colorset, 1 (Traditional Doom)  
-cl_run, false (Always Run?)  
+~~cl_run, false (Always Run?)~~  
 st_scale, 2  
 Crosshair (Cross 1 Green)  
 save_dir=$DOOMWADDIR  
@@ -80,20 +80,9 @@ POV1Down +back
 POV1Left +left  
 POV1Right +right  
   
-// D-Pad Bindings PS3  
-Joy14 +forward  
-Joy15 +back  
-Joy16 +left  
-Joy17 +right  
-
 **0ptional:**
 *You can Tweak the [02_JoyMappings_CUSTOM.diff] file, just make sure to maintain the same number of +//Lines #77+ #78Empty.*  
 
-**NOTE:** If you don't want to use the Menu driven script, Simply COPY the Modified [lzdoom.sh] RetroPie-Setup Script + [sijl.diff] files to:  
-~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh  
-~/RetroPie-Setup/scriptmodules/ports/lzdoom/*.diff  
-Then proceed to Compile/Install [lzdoom] from [RetroPie-Setup] -> *INSTALL FROM SOURCE*  
-
 ***SOURCES:***
 [https://github.com/drfrag666/gzdoom](https://github.com/drfrag666/gzdoom/releases/tag/3.87c)  
-[https://github.com/RetroPie/RetroPie-Setup/tree/master/scriptmodules/ports](https://github.com/RetroPie/RetroPie-Setup/blob/master/scriptmodules/ports/lzdoom.sh)  
+[https://github.com/RetroPie/RetroPie-Setup/tree/master/scriptmodules/ports/lzdoom](https://github.com/RetroPie/RetroPie-Setup/blob/master/scriptmodules/ports/lzdoom.sh)  
