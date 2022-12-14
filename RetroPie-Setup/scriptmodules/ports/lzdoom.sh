@@ -27,16 +27,14 @@ function depends_lzdoom() {
 
 function sources_lzdoom() {
     gitPullOrClone
-	# Apply SDL Patch https://retropie.org.uk/forum/topic/16078/zdoom-and-gampad-fully-working-in-menu-with-no-keyboard
-	if ! grep -q CNTRLMNU_OPEN_MAIN "$md_build/wadsrc/static/language.enu"; then
-		if isPlatform "rpi" || [ -d /home/odroid/ ]; then
-			# Apply SBC Specific Tweaks
-			applyPatch "$md_data/00_sbc_tweaks.diff"
-		fi
-		applyPatch "$md_data/01_sijl_tweaks.diff"
-		applyPatch "$md_data/02_JoyMappings_0SFA.diff"
-		applyPatch "$md_data/03_Preferences.diff" #ENABLED
+	# Apply Single-Board-Computer Specific Tweaks
+	if isPlatform "rpi" || isPlatform "arm"; then
+		applyPatch "$md_data/00_sbc_tweaks.diff"
 	fi
+	# Apply SDL JoyPad Tweaks https://retropie.org.uk/forum/topic/16078/zdoom-and-gampad-fully-working-in-menu-with-no-keyboard
+	applyPatch "$md_data/01_sijl_tweaks.diff"
+	applyPatch "$md_data/02_JoyMappings_0SFA.diff"
+	applyPatch "$md_data/03_Preferences.diff" #ENABLED
 }
 
 function build_lzdoom() {
@@ -48,7 +46,6 @@ function build_lzdoom() {
         params+=(-DUSE_ARMV8=On)
     fi
     # Note: `-funsafe-math-optimizations` should be avoided, see: https://forum.zdoom.org/viewtopic.php?f=7&t=57781
-    # CFLAGS="${CFLAGS//-funsafe-math-optimizations/}" CXXFLAGS="${CXXFLAGS//-funsafe-math-optimizations/}" cmake "${params[@]}" ..
     cmake "${params[@]}" ..
     make
     md_ret_require="$md_build/release/$md_id"
@@ -75,17 +72,12 @@ function add_games_lzdoom() {
     elif isPlatform "gles"; then
         params+=("+vid_renderer 0")
     fi
-	
-	# FluidSynth is too memory/CPU intensive
-    if isPlatform "rpi" || [ -d /home/odroid/ ]; then
-        # -2 Timidity++  -3 OPL Synth Emulation
-		params+=("+'snd_mididevice -2'")
-    elif isPlatform "arm"; then
-        # -2 Timidity++  -3 OPL Synth Emulation
-		params+=("+'snd_mididevice -2'")
-    fi
 
-    if isPlatform "kms"; then
+    # FluidSynth is too memory/CPU intensive
+    ## -2 Timidity++ ## -3 OPL Synth Emulation
+	params+=("+'snd_mididevice -2'")
+	
+	if isPlatform "kms"; then
         params+=("+vid_vsync 1" "-width %XRES%" "-height %YRES%")
     fi
 
@@ -94,7 +86,7 @@ function add_games_lzdoom() {
 
 function configure_lzdoom() {
     mkRomDir "ports/doom"
-    mkRomDir "ports/doom/mods"
+	mkRomDir "ports/doom/mods"
 
     moveConfigDir "$home/.config/$md_id" "$md_conf_root/doom"
 
