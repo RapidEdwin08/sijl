@@ -19,8 +19,8 @@ When Compiled from Source [lzdoom.ini] will populate your Selected Joy Pad Bindi
 Can be ran from retropiemenu:  
 
 ```bash
-wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/lzdoom-sijl.sh -P ~/RetroPie/retropiemenu
-wget https://raw.githubusercontent.com/RapidEdwin08/sijl/main/lzdoom-sijl.png -P ~/RetroPie/retropiemenu/icons
+wget https://raw.githubusercontent.com/RapidEdwin08/sijl/3.87c/lzdoom-sijl.sh -P ~/RetroPie/retropiemenu
+wget https://raw.githubusercontent.com/RapidEdwin08/sijl/3.87c/lzdoom-sijl.png -P ~/RetroPie/retropiemenu/icons
 ```
 0r Can be ran manually from any directory:  
 ```bash
