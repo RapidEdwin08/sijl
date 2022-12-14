@@ -219,7 +219,7 @@ echo ""
 
 diffsREF=$(
 echo '
-[00_sbc_tweaks.diff]: (0nly Applied to rPi/Odroid)
+[00_sbc_tweaks.diff]: (0nly Applied to rPi/arm)
 cl_rockettrails, 0
 r_maxparticles, 2500 (Lowered from 4000)
 
