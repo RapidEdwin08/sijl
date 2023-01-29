@@ -468,6 +468,12 @@ if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tw
 	fi
 fi
 
+# Cleanup LZDoom v3.88b.DIFFs if NOT v3.88b
+if [ $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q "3.88b" ; echo $?) == '1' ]; then
+	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/01_remove_cmake_arm_options.diff 2>/dev/null
+	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_lzma_sdk_dont_force_arm_crc32.diff 2>/dev/null
+fi
+
 # FINISHED
 dialog --no-collapse --title "REMOVE SDL Input Joystick for LZDoom [sijl] from RetroPie-Setup  *COMPLETE!* " --ok-label Back --msgbox "$blankJOYpad"  25 75
 
