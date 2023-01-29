@@ -276,7 +276,7 @@ if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tw
 fi
 
 # Confirm Configurations
-confLZJOY=$(dialog --stdout --no-collapse --title "SDL Input Joystick for LZDoom v$ZDversion [sijl] by: RapidEdwin08 [$version]" \
+confLZJOY=$(dialog --no-collapse --title "SDL Input Joystick for LZDoom v$ZDversion [sijl] by: RapidEdwin08 [$version]" \
 	--ok-label OK --cancel-label EXIT \
 	--menu "$pijoysdlLOGOmenu" 25 75 20 \
 	J "><  SELECT [JoyMapping.diff]  ><" \
@@ -285,18 +285,18 @@ confLZJOY=$(dialog --stdout --no-collapse --title "SDL Input Joystick for LZDoom
 	I "><  INSTALL [sijl]  to  [RetroPie-Setup\..\ports]  ><" \
 	U "><  REMOVE  [sijl] from [RetroPie-Setup\..\ports]  ><" \
 	X "><  TOGGLE  [xpad] Driver TriggerButton Patch  ><" \
-	R "><  REFERENCES  ><")
+	R "><  REFERENCES  ><" 2>&1>/dev/tty)
 
 if [ "$confLZJOY" == 'J' ]; then mappingLZJOY; fi
 if [ "$confLZJOY" == 'P' ]; then preferencesLZJOY; fi
 if [ "$confLZJOY" == 'X' ]; then xpadDRIVERpatch; fi
 
 if [ "$confLZJOY" == 'S' ]; then
-	confiRPsetup=$(dialog --stdout --no-collapse --title " RetroPie Setup -> Manage Packages" \
+	confiRPsetup=$(dialog --no-collapse --title " RetroPie Setup -> Manage Packages" \
 		--ok-label OK --cancel-label Back \
 		--menu "                          ? ARE YOU SURE ?              $sijlREFS $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep 'applyPatch' | awk '{$1=$1};1' ) $lineDIV  RetroPie Setup -> Manage Packages -> Manage driver packages -> xpad $(cat ~/RetroPie-Setup/scriptmodules/supplementary/xpad.sh | grep '01_enable_leds' | awk '{$1=$1};1' )" 25 75 20 \
 		Y "YES OPEN [RetroPie-Setup]" \
-		B "BACK")
+		B "BACK" 2>&1>/dev/tty)
 	if [ "$confiRPsetup" == 'Y' ]; then
 		cd ~/RetroPie-Setup/ && sudo bash ~/RetroPie-Setup/retropie_setup.sh
 		#sudo bash ~/RetroPie-Setup/retropie_packages.sh retropiemenu launch "/home/$USER/RetroPie-Setup/retropie_setup.sh" </dev/tty > /dev/tty
@@ -339,21 +339,21 @@ if [ "$confLZJOY" == 'R' ]; then
 fi
 
 if [ "$confLZJOY" == 'I' ]; then
-	confiSIJLinstall=$(dialog --stdout --no-collapse --title "INSTALL [sijl]  to  [~/RetroPie-Setup/scriptmodules/ports]" \
+	confiSIJLinstall=$(dialog --no-collapse --title "INSTALL [sijl]  to  [~/RetroPie-Setup/scriptmodules/ports]" \
 		--ok-label OK --cancel-label Back \
 		--menu "                          ? ARE YOU SURE ?             " 25 75 20 \
 		Y "YES INSTALL [sijl]  to  [RetroPie-Setup\..\ports]" \
-		B "BACK")
+		B "BACK" 2>&1>/dev/tty)
 	if [ "$confiSIJLinstall" == 'Y' ]; then installLZJOY; fi
 	mainMENU
 fi
 
 if [ "$confLZJOY" == 'U' ]; then
-	confiSIJLremove=$(dialog --stdout --no-collapse --title "REMOVE [sijl]  from  [~/RetroPie-Setup/scriptmodules/ports]" \
+	confiSIJLremove=$(dialog --no-collapse --title "REMOVE [sijl]  from  [~/RetroPie-Setup/scriptmodules/ports]" \
 		--ok-label OK --cancel-label Back \
 		--menu "                          ? ARE YOU SURE ?             \n             *INTERNET CONNECTION REQUIRED* TO RE-INSTALL\n" 25 75 20 \
 		Y "YES REMOVE [sijl]  from  [RetroPie-Setup\..\ports]" \
-		B "BACK")
+		B "BACK" 2>&1>/dev/tty)
 	if [ "$confiSIJLremove" == 'Y' ]; then removeLZJOY; fi
 	mainMENU
 fi
@@ -477,7 +477,7 @@ mainMENU
 mappingLZJOY()
 {
 
-confLZmapping=$(dialog --stdout --no-collapse --title "SELECT [JoyMapping.diff] from [~/RetroPie-Setup/scriptmodules/ports/lzdoom]" \
+confLZmapping=$(dialog --no-collapse --title "SELECT [JoyMapping.diff] from [~/RetroPie-Setup/scriptmodules/ports/lzdoom]" \
 		--ok-label OK --cancel-label Back \
 		--menu "   [JoyMapping.diff] will be Applied during Compile of [lzdoom] $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep '02_JoyMappings' | awk '{$1=$1};1' )" 25 75 20 \
 		1 "[0ne-Size-Fits-All]" \
@@ -491,7 +491,7 @@ confLZmapping=$(dialog --stdout --no-collapse --title "SELECT [JoyMapping.diff] 
 		9 "[XBOX360] Triggers As Axes" \
 		10 "[XBOX360] Triggers As Buttons" \
 		11 "[CUSTOM]" \
-		B "BACK")
+		B "BACK" 2>&1>/dev/tty)
 
 if [ "$confLZmapping" == '' ] || [ "$confLZmapping" == 'B' ]; then mainMENU; fi
 
@@ -580,12 +580,12 @@ mappingLZJOY
 preferencesLZJOY()
 {
 
-confLZprefs=$(dialog --stdout --no-collapse --title "SELECT [Preferences.diff] from [~/RetroPie-Setup/scriptmodules/ports/lzdoom]" \
+confLZprefs=$(dialog --no-collapse --title "SELECT [Preferences.diff] from [~/RetroPie-Setup/scriptmodules/ports/lzdoom]" \
 		--ok-label OK --cancel-label Back \
 		--menu "   [Preferences.diff] will be Applied during Compile of [lzdoom] $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep '03_Preferences' | awk '{$1=$1};1' )" 25 75 20 \
 		1 "[ENABLE]  Preferences.diff" \
 		2 "[DISABLE] Preferences.diff" \
-		B "BACK")
+		B "BACK" 2>&1>/dev/tty)
 
 if [ "$confLZprefs" == '' ] || [ "$confLZprefs" == 'B' ]; then mainMENU; fi
 
@@ -609,12 +609,12 @@ preferencesLZJOY
 xpadDRIVERpatch()
 {
 
-confXPADdriver=$(dialog --stdout --no-collapse --title "TOGGLE [MAP_TRIGGERS_TO_BUTTONS] Patch for [xpad] Driver" \
+confXPADdriver=$(dialog --no-collapse --title "TOGGLE [MAP_TRIGGERS_TO_BUTTONS] Patch for [xpad] Driver" \
 		--ok-label OK --cancel-label Back \
 		--menu "   $xpadPATCHinfo $lineDIV $(cat ~/RetroPie-Setup/scriptmodules/supplementary/xpad.sh | grep '01_enable_leds' | awk '{$1=$1};1' )" 25 75 20 \
 		1 "[ENABLE]  MAP_TRIGGERS_TO_BUTTONS (DEFAULT)" \
 		2 "[DISABLE] MAP_TRIGGERS_TO_BUTTONS (NO trigmapping)" \
-		B "BACK")
+		B "BACK" 2>&1>/dev/tty)
 
 if [ "$confXPADdriver" == '' ] || [ "$confXPADdriver" == 'B' ]; then mainMENU; fi
 
