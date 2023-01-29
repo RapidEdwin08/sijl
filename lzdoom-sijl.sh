@@ -472,6 +472,7 @@ fi
 if [ $(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q "3.88b" ; echo $?) == '1' ]; then
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/01_remove_cmake_arm_options.diff 2>/dev/null
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_lzma_sdk_dont_force_arm_crc32.diff 2>/dev/null
+	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom -d 2>/dev/null
 fi
 
 # FINISHED
