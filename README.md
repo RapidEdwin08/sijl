@@ -34,7 +34,7 @@ cd ~/sijl && ./lzdoom-sijl.sh
 	<game>
 		<path>./lzdoom-sijl.sh</path>
 		<name>[lzdoom] SIJL</name>
-		<desc>INSTALL/REMOVE [lzdoom-sijl] for [RetroPie].</desc>
+		<desc>Configure [lzdoom-sijl] for [RetroPie].</desc>
 		<image>/home/pi/RetroPie/retropiemenu/icons/lzdoom-sijl.png</image>
 	</game>
 ```
