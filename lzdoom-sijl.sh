@@ -300,7 +300,7 @@ if [ "$confLZJOY" == 'S' ]; then
 	if [ "$confiRPsetup" == 'Y' ]; then
 		cd ~/RetroPie-Setup/ && sudo bash ~/RetroPie-Setup/retropie_setup.sh
 		#sudo bash ~/RetroPie-Setup/retropie_packages.sh retropiemenu launch "/home/$USER/RetroPie-Setup/retropie_setup.sh" </dev/tty > /dev/tty
-		exit 0
+		#exit 0
 	fi
 	mainMENU
 fi
