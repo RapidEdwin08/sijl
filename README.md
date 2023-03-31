@@ -45,6 +45,7 @@ cd ~
 git clone -b 3.87c https://github.com/RapidEdwin08/sijl.git
 sudo chmod 755 ~/sijl/lzdoom-sijl.sh
 cd ~/sijl && ./lzdoom-sijl.sh
+
 ```
 
 # Changes to lzdoom v3.87c Source before compiling:  
