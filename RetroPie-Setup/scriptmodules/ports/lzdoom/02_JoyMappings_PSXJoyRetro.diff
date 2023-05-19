@@ -37,7 +37,7 @@ diff -ur a/wadsrc/static/defbinds.txt b/wadsrc/static/defbinds.txt
 +doublebind Joy2 invuse
 +Joy3 +jump
 +doublebind Joy3 land
-+Joy4 +crouch
++Joy4 crouch
 +doublebind Joy4 +altattack
 +
 +Joy5 +moveleft
