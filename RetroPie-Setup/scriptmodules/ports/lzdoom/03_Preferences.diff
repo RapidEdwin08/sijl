@@ -61,11 +61,11 @@ diff -ur a/src/g_statusbar/shared_sbar.cpp b/src/g_statusbar/shared_sbar.cpp
 -CVAR (Color, crosshaircolor, 0xff0000, CVAR_ARCHIVE);
 -CVAR (Int, crosshairhealth, 1, CVAR_ARCHIVE);
 -CVAR (Float, crosshairscale, 1.0, CVAR_ARCHIVE);
-+CVAR (Int, crosshair, 1, CVAR_ARCHIVE)
++CVAR (Int, crosshair, 2, CVAR_ARCHIVE)
 +CVAR (Bool, crosshairforce, true, CVAR_ARCHIVE)
 +CVAR (Color, crosshaircolor, 0x00ff1e, CVAR_ARCHIVE);
 +CVAR (Int, crosshairhealth, 0, CVAR_ARCHIVE);
-+CVAR (Float, crosshairscale, 0.65f, CVAR_ARCHIVE);
++CVAR (Float, crosshairscale, 0.30f, CVAR_ARCHIVE);
  CVAR (Bool, crosshairgrow, false, CVAR_ARCHIVE);
  CUSTOM_CVAR(Int, am_showmaplabel, 2, CVAR_ARCHIVE)
  {
