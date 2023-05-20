@@ -78,7 +78,7 @@ function add_games_lzdoom() {
 
     # FluidSynth is too memory/CPU intensive
     ## -2 Timidity++ ## -3 OPL Synth Emulation
-	params+=("+snd_mididevice -2")
+	params+=("'+snd_mididevice -2'")
 
     if isPlatform "kms"; then
         params+=("+vid_vsync 1" "-width %XRES%" "-height %YRES%")
