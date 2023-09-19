@@ -42,9 +42,26 @@ echo '        \           /                            \            /   '
 echo '         \_________/                              \__________/   '
 )
 
-snes8JOYpad=$(
+osfa8JOYpad=$(
 echo ""
 echo '     JOY 5 /========\  8-Button 0ne-Size-Fits-All  /========\ JOY 6 '
+echo '          /   _____  `----------------------------`     Joy3 \    '
+echo '         /   | /|\ |                            Joy4   ,```,  \   '
+echo '        / ___|  |  |__                          ,```,  `._.`   \   '
+echo '       ; |      |      |    Joy_7     Joy_8     `._.`          ;   '
+echo '       | |<--- POV --->|      / /       / /             Joy2   |   '
+echo '       | |___   |   ___|     /_/       /_/       Joy1   ,```,  ;   '
+echo '       |     |  |  |                             ,```,  `._.`  |   '
+echo '       |     |_\|/_|                             `._.`         |   '
+echo '       |                /`````````````````````\                |   '
+echo '       |               /  PLACEMENT MAY VARY   \               |   '
+echo '        \             /                         \             /   '
+echo '         \___________/                           \___________/   '
+)
+
+snes8JOYpad=$(
+echo ""
+echo '     JOY 5 /========\         8-Button SNES       /========\ JOY 6 '
 echo '          /   _____  `----------------------------`     Joy3 \    '
 echo '         /   | /|\ |                            Joy4   ,```,  \   '
 echo '        / ___|  |  |__                          ,```,  `._.`   \   '
@@ -262,7 +279,7 @@ mainMENU()
 {
 pijoysdlLOGOmenu=$blankJOYpad
 if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tweaks.diff' ; echo $?)" == '0' ]; then
-	if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_0SFA.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$snes8JOYpad; fi
+	if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_0SFA.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$osfa8JOYpad; fi
 	if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_8Button.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$snes8JOYpad; fi
 	if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_AndroidPCPS3.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$androidpcps3JOYpad; fi
 	if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_N64.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$n64JOYpad; fi
@@ -441,7 +458,7 @@ echo ""
 )
 
 # FINISHED
-dialog --no-collapse --title "INSTALL SDL Input Joystick for LZDoom [sijl] to RetroPie-Setup *COMPLETE!* " --ok-label Back --msgbox "$sijlREFS $diffSIJLsh $diffsREF $lineDIV $snes8JOYpad $lineDIV $androidpcps3JOYpad $lineDIV $n64JOYpad $lineDIV $ps2JOYpad $lineDIV $ps34JOYpad $lineDIV $mkxJOYpad $lineDIV $psxJOYpad $lineDIV $xbox360aJOYpad $lineDIV $xbox360bJOYpad"  25 75
+dialog --no-collapse --title "INSTALL SDL Input Joystick for LZDoom [sijl] to RetroPie-Setup *COMPLETE!* " --ok-label Back --msgbox "$sijlREFS $diffSIJLsh $diffsREF"  25 75
 
 mainMENU
 }
