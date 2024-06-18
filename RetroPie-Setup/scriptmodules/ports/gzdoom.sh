@@ -117,7 +117,7 @@ function add_games_gzdoom() {
     fi
 
     if isPlatform "kms"; then
-        params+=("-width %XRES%" "-height %YRES%")
+        params+=("+vid_vsync 1" "-width %XRES%" "-height %YRES%")
     fi
 
     _add_games_lr-prboom "$launcher_prefix $md_inst/$md_id -iwad %ROM% ${params[*]}"
