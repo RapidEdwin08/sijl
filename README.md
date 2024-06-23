@@ -61,6 +61,7 @@ mkRomDir "ports/doom/gzdoom-saves"
 
 ***00_sbc_tweaks.diff: (0nly Applied to rPi/arm)***  
 cl_rockettrails, 0  
+r_maxparticles, 2500  
 
 ***01_sijl_tweaks.diff:***  
 use_joystick, true  
