@@ -34,7 +34,7 @@ function sources_lzdoom() {
         applyPatch "$md_data/02_lzma_sdk_dont_force_arm_crc32.diff"
     fi
 	# Apply Single-Board-Computer Specific Tweaks
-	if isPlatform "rpi" || isPlatform "arm"; then
+	if isPlatform "rpi"* || isPlatform "arm"; then
 		applyPatch "$md_data/00_sbc_tweaks.diff"
 	fi
 	# Apply SDL JoyPad Tweaks https://retropie.org.uk/forum/topic/16078/zdoom-and-gampad-fully-working-in-menu-with-no-keyboard
