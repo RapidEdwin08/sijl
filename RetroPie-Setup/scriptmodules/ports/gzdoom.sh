@@ -37,7 +37,7 @@ function depends_gzdoom() {
 function sources_gzdoom() {
     gitPullOrClone
 	# Apply Single-Board-Computer Specific Tweaks
-	if isPlatform "rpi" || isPlatform "arm"; then
+	if isPlatform "rpi"* || isPlatform "arm"; then
 		applyPatch "$md_data/00_sbc_tweaks.diff"
 	fi
 	# Apply SDL JoyPad Tweaks https://retropie.org.uk/forum/topic/16078/zdoom-and-gampad-fully-working-in-menu-with-no-keyboard
