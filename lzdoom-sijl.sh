@@ -278,7 +278,7 @@ echo ""
 mainMENU()
 {
 pijoysdlLOGOmenu=$blankJOYpad
-if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tweaks.diff' ; echo $?)" == '0' ]; then
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '# SDL Input Joystick for LZDoom' ; echo $?)" == '0' ]; then
 	if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_0SFA.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$osfa8JOYpad; fi
 	if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_8Button.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$snes8JOYpad; fi
 	if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '02_JoyMappings_AndroidPCPS3.diff' ; echo $?)" == '0' ]; then pijoysdlLOGOmenu=$androidpcps3JOYpad; fi
