@@ -8,6 +8,7 @@
 # See the LICENSE.md file at the top-level directory of this distribution and
 # at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
 #
+# SDL Input Joystick for LZDoom
 
 rp_module_id="lzdoom"
 rp_module_desc="lzdoom - DOOM source port (legacy version of GZDoom)"
