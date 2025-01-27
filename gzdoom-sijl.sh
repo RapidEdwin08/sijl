@@ -334,7 +334,7 @@ fi
 if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh ]; then wget https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/scriptmodules/ports/gzdoom.sh -P ~/RetroPie-Setup/scriptmodules/ports; fi
 if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/gzdoom/lzma_armv7_crc.diff ]; then wget https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/scriptmodules/ports/gzdoom/lzma_armv7_crc.diff -P ~/RetroPie-Setup/scriptmodules/ports/gzdoom; fi
 
-if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh | grep -q '01_sijl_tweaks.diff' ; echo $?)" == '1' ]; then
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh | grep -q '# SDL Input Joystick for LZDoom' ; echo $?)" == '1' ]; then
 	# Backup if not exist already
 	if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh.b4sijl ]; then mv ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh.b4sijl 2>/dev/null; fi
 	rm ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh 2>/dev/null
@@ -398,8 +398,8 @@ removeLZJOY()
 tput reset
 
 # Check [gzdoom.sh] for [01_sijl_tweaks] - Remove IF Found
-if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh ]; then echo '01_sijl_tweaks.diff' > ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh; fi
-if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh | grep -q '01_sijl_tweaks.diff' ; echo $?)" == '0' ]; then
+if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh ]; then echo '# SDL Input Joystick for LZDoom' > ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh; fi
+if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh | grep -q '# SDL Input Joystick for LZDoom' ; echo $?)" == '0' ]; then
 	rm ~/RetroPie-Setup/scriptmodules/ports/gzdoom/00_sbc_tweaks.diff 2>/dev/null
 	rm ~/RetroPie-Setup/scriptmodules/ports/gzdoom/01_sijl_tweaks.diff 2>/dev/null
 	rm ~/RetroPie-Setup/scriptmodules/ports/gzdoom/03_Preferences.diff 2>/dev/null
