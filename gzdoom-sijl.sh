@@ -398,7 +398,7 @@ removeLZJOY()
 tput reset
 
 # Check [gzdoom.sh] for [01_sijl_tweaks] - Remove IF Found
-if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh ]; then echo '01_sijl_tweaks.diff' > ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh; fi
+if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh ]; then echo '# SDL Input Joystick for LZDoom' > ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh; fi
 if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh | grep -q '# SDL Input Joystick for LZDoom' ; echo $?)" == '0' ]; then
 	rm ~/RetroPie-Setup/scriptmodules/ports/gzdoom/00_sbc_tweaks.diff 2>/dev/null
 	rm ~/RetroPie-Setup/scriptmodules/ports/gzdoom/01_sijl_tweaks.diff 2>/dev/null
