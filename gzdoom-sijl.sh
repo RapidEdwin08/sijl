@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # https://github.com/RapidEdwin08/sijl
-version=202406
-ZDversion=4.12.2
+version=202506
+ZDversion=4.14.2
 sijlREPO=$ZDversion
 
 customJOYpad=$(
@@ -191,6 +191,8 @@ showendoom, 0
 am_colorset, 1 (Traditional Doom)
 st_scale, 2
 uiscale, 2
+con_scale, 4
+con_scaletext, 4
 crosshair, 2
 crosshairhealth, 2
 disableautosave, 2
