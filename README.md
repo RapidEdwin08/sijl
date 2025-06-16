@@ -1,7 +1,7 @@
-# SDL Input Joystick for GZDoom v4.12.2 for RetroPie  
+# SDL Input Joystick for GZDoom v4.14.2 for RetroPie  
 *SDL Input Joystick for LZDoom **(SIJL)** has moved to GZDoom*  
 ***SIJL** will retain it's Name + Older LZDoom Branches for now*  
-![gzdoom-sijl.png](https://raw.githubusercontent.com/RapidEdwin08/sijl/4.12.2/gzdoom-sijl.png)  
+![gzdoom-sijl.png](https://raw.githubusercontent.com/RapidEdwin08/sijl/4.14.2/gzdoom-sijl.png)  
 
 Add support for SDL Input from Joystick in Menus eliminating the need for a Keyboard.  
 Additionally includes Pre-Configured Joypad Mappings + Raspberry Pi specific Tweaks  
@@ -20,14 +20,14 @@ When Compiled from Source [gzdoom.ini] will populate your Selected Joy Pad Bindi
 # Installation  
 If you want 1-Run-N-Done:
 ```bash
-curl -sSL https://raw.githubusercontent.com/RapidEdwin08/sijl/4.12.2/gzdoom-sijl.sh  | bash
+curl -sSL https://raw.githubusercontent.com/RapidEdwin08/sijl/4.14.2/gzdoom-sijl.sh  | bash
 ```
 
 If you want to Put the Install Script in the retropiemenu [+Icon]:  
 
 ```bash
-wget https://raw.githubusercontent.com/RapidEdwin08/sijl/4.12.2/gzdoom-sijl.sh -P ~/RetroPie/retropiemenu
-wget https://raw.githubusercontent.com/RapidEdwin08/sijl/4.12.2/gzdoom-sijl.png -P ~/RetroPie/retropiemenu/icons
+wget https://raw.githubusercontent.com/RapidEdwin08/sijl/4.14.2/gzdoom-sijl.sh -P ~/RetroPie/retropiemenu
+wget https://raw.githubusercontent.com/RapidEdwin08/sijl/4.14.2/gzdoom-sijl.png -P ~/RetroPie/retropiemenu/icons
 ```
 
 0ptionally you can Add an Entry [+Icon] to your retropiemenu [gamelist.xml]:  
@@ -44,15 +44,15 @@ wget https://raw.githubusercontent.com/RapidEdwin08/sijl/4.12.2/gzdoom-sijl.png 
 If you want to GIT it All:  
 ```bash
 cd ~
-git clone -b 4.12.2 https://github.com/RapidEdwin08/sijl.git
+git clone -b 4.14.2 https://github.com/RapidEdwin08/sijl.git
 chmod 755 ~/sijl/gzdoom-sijl.sh
 cd ~/sijl && ./gzdoom-sijl.sh
 
 ```
 
-# Changes to gzdoom v4.12.2 Source before compiling:  
+# Changes to gzdoom v4.14.2 Source before compiling:  
 
-***[gzdoom.sh] v4.12.2 RetroPie-Setup Installer Script:***  
+***[gzdoom.sh] v4.14.2 RetroPie-Setup Installer Script:***  
 local params=("+fullscreen 1 -config $romdir/ports/doom/gzdoom.ini -savedir $romdir/ports/doom/gzdoom-saves")  
 +gl_maplightmode 8 (Software)  
 snd_mididevice, -1 (Fluidsynth)  
@@ -71,6 +71,8 @@ showendoom, 0
 am_colorset, 1 (Traditional Doom)  
 st_scale, 2  
 uiscale, 2  
+con_scale, 4
+con_scaletext, 4
 crosshair, 2  
 crosshairhealth, 2  
 disableautosave, 2  
@@ -98,5 +100,5 @@ POV1Right +right
 *You can Tweak the [02_JoyMappings_CUSTOM.diff] file, just make sure to maintain the same number of +//Lines #115+ #116Empty.*  
 
 ***SOURCES:***
-[https://github.com/ZDoom/gzdoom](https://github.com/ZDoom/gzdoom/tree/g4.12.2)  
+[https://github.com/ZDoom/gzdoom](https://github.com/ZDoom/gzdoom/tree/g4.14.2)  
 [https://github.com/RetroPie/RetroPie-Setup/tree/master/scriptmodules/ports/gzdoom](https://github.com/RetroPie/RetroPie-Setup/blob/master/scriptmodules/ports/gzdoom.sh)  
