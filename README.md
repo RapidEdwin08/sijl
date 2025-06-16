@@ -71,8 +71,8 @@ showendoom, 0
 am_colorset, 1 (Traditional Doom)  
 st_scale, 2  
 uiscale, 2  
-con_scale, 4
-con_scaletext, 4
+con_scale, 4  
+con_scaletext, 4  
 crosshair, 2  
 crosshairhealth, 2  
 disableautosave, 2  
