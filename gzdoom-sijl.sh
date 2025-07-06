@@ -335,6 +335,7 @@ fi
 # IF [gzdoom.sh] NOT FOUND then GET IT from [RetroPie-Setup/master]
 if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh ]; then wget https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/scriptmodules/ports/gzdoom.sh -P ~/RetroPie-Setup/scriptmodules/ports; fi
 if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/gzdoom/lzma_armv7_crc.diff ]; then wget https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/scriptmodules/ports/gzdoom/lzma_armv7_crc.diff -P ~/RetroPie-Setup/scriptmodules/ports/gzdoom; fi
+if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/gzdoom/armv8_gcc12_fix.diff ]; then wget https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/scriptmodules/ports/gzdoom/armv8_gcc12_fix.diff -P ~/RetroPie-Setup/scriptmodules/ports/gzdoom; fi
 
 if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/gzdoom.sh | grep -q '# SDL Input Joystick for LZDoom' ; echo $?)" == '1' ]; then
 	# Backup if not exist already
