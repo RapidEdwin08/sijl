@@ -470,10 +470,11 @@ tput reset
 # Check [lzdoom.sh] for [01_sijl_tweaks] - Remove IF Found
 if [ ! -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh ]; then echo '01_sijl_tweaks.diff' > ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh; fi
 if [ "$(cat ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh | grep -q '01_sijl_tweaks.diff' ; echo $?)" == '0' ]; then
-	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/00_sbc_tweaks.diff 2>/dev/null
-	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/01_sijl_tweaks.diff 2>/dev/null
-	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/03_Preferences.diff 2>/dev/null
+	#rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/00_sbc_tweaks.diff 2>/dev/null
+	#rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/01_sijl_tweaks.diff 2>/dev/null
+	#rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/03_Preferences.diff 2>/dev/null
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings*.diff 2>/dev/null
+	wget https://raw.githubusercontent.com/RapidEdwin08/sijl/$sijlREPO/RetroPie-Setup/scriptmodules/ports/lzdoom/02_JoyMappings_0SFA.diff -P ~/RetroPie-Setup/scriptmodules/ports/lzdoom
 	rm ~/RetroPie-Setup/scriptmodules/ports/lzdoom -d 2>/dev/null
 	if [ -f ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4sijl ]; then
 		mv ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh.b4sijl ~/RetroPie-Setup/scriptmodules/ports/lzdoom.sh
