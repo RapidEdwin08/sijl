@@ -22,7 +22,6 @@ function depends_lzdoom() {
         libev-dev libfluidsynth-dev libgme-dev libsdl2-dev libmpg123-dev libsndfile1-dev zlib1g-dev libbz2-dev
         timidity freepats cmake libopenal-dev libjpeg-dev libgl1-mesa-dev fluid-soundfont-gm
     )
-    [[ "$__gcc_version" -gt 12 ]] && depends+=(gcc-12 g++-12)
     getDepends "${depends[@]}"
 }
 
@@ -34,6 +33,8 @@ function sources_lzdoom() {
         # patch the 21.06 version of LZMA-SDK to disable the CRC32 ARMv8 intrinsics forced for ARM CPUs
         applyPatch "$md_data/02_lzma_sdk_dont_force_arm_crc32.diff"
     fi
+    applyPatch "$md_data/03_extra_includes.diff"
+
 	# Apply Single-Board-Computer Specific Tweaks
 	if isPlatform "rpi"* || isPlatform "arm"; then
 		applyPatch "$md_data/00_sbc_tweaks.diff"
@@ -42,9 +43,6 @@ function sources_lzdoom() {
 	applyPatch "$md_data/01_sijl_tweaks.diff"
 	applyPatch "$md_data/02_JoyMappings_0SFA.diff"
 	applyPatch "$md_data/03_Preferences.diff" #ENABLED
-    if [[ "$__gcc_version" -ge 12 ]]; then
-        sed -i s+set\(\ ZD_FASTMATH_FLAG\ \"-ffast-math.*+set\(\ \ZD_FASTMATH_FLAG\ \"-ffast-math\ -ffp-contract=fast\ -fmath-errno\"\ \)+ "$md_build/CMakeLists.txt"
-    fi
 }
 
 function build_lzdoom() {
@@ -53,11 +51,9 @@ function build_lzdoom() {
     cd release
     local params=(-DNO_GTK=On -DCMAKE_INSTALL_PREFIX="$md_inst" -DPK3_QUIET_ZIPDIR=ON -DCMAKE_BUILD_TYPE=Release)
     # Note: `-funsafe-math-optimizations` should be avoided, see: https://forum.zdoom.org/viewtopic.php?f=7&t=57781
-    if [[ "$__gcc_version" -gt 12 ]]; then export CC=/usr/bin/gcc-12; export CXX=/usr/bin/g++-12; fi
     cmake "${params[@]}" ..
     make
     md_ret_require="$md_build/release/$md_id"
-    if [[ "$__gcc_version" -gt 12 ]]; then unset CC; unset CXX; fi
 }
 
 function install_lzdoom() {
