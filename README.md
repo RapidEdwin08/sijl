@@ -77,24 +77,78 @@ con_scaletext, 4
 crosshair, 2  
 crosshairhealth, 2   
 
-***02_JoyMappings_0SFA.diff:*** *(Neutral Axes - Multiple D-Pad Support - 0ut-0f-Box Config for 8+Button JoyPads - togglemap @Joy9)*  
+***02_JoyMappings_0SFA.diff:*** *(Neutral Axes - Multiple D-Pad Support - 0ut-0f-Box Config for 8+Button JoyPads - NO Doublebinds)*  
 const EJoyAxis SDLInputJoystick::DefaultAxes[5] = {JOYAXIS_Yaw, JOYAXIS_Forward, JOYAXIS_None, JOYAXIS_None, JOYAXIS_None};  
-Joy1 +jump  
-Joy2 +use  
-Joy3 +attack  
-Joy4 weapnext  
-Joy5 +moveleft  
-Joy6 +moveright  
-Joy7 "toggle cl_run"  
-Joy8 menu_main  
-Joy9 togglemap  
-  
-// D-Pad Bindings Hat  
-POV1Up +forward  
-POV1Down +back  
-POV1Left +left  
-POV1Right +right  
-  
+joy1 "toggle cl_run"  
+joy2 +use  
+joy3 +attack  
+joy4 weapnext  
+joy5 +moveleft  
+joy6 +moveright  
+joy7 togglemap  
+joy8 menu_main  
+joy9 +jump  
+pov1up +forward  
+pov1down +back  
+pov1left +left  
+pov1right +right  
+
+***02_JoyMappings_8Button.diff:*** *(SNES/Generic 8-Button Neutral Axes - 0ut-0f-Box Config for 8+Button JoyPads ++Doublebinds)*  
+const EJoyAxis SDLInputJoystick::DefaultAxes[5] = {JOYAXIS_Yaw, JOYAXIS_Forward, JOYAXIS_None, JOYAXIS_None, JOYAXIS_None};  
+joy1 +jump *++joy1* land  
+joy2 +use *++joy2* invuse  
+joy3 +attack  
+joy4 weapnext *++joy4* invnext  
+joy5 +moveleft *++joy5* +movedown  
+joy6 +moveright *++joy6* +moveup  
+joy7 "toggle cl_run" *++joy7* togglemap  
+joy8 menu_main  
+pov1up +forward  
+pov1down +back  
+pov1left +left  
+pov1right +right  
+
+***02_JoyMappings_XBOX360_TriggerAxis.diff:*** *(Xbox360 Specific Axes - Triggers as Axes ++Doublebinds)*  
+const EJoyAxis SDLInputJoystick::DefaultAxes[5] = {JOYAXIS_Side, JOYAXIS_Forward, JOYAXIS_None, JOYAXIS_Yaw, JOYAXIS_Pitch};  
+joy1 +jump  
+joy2 +use *++joy2* land  
+joy3 crouch *++joy3* +movedown  
+joy4 +speed *++joy4* +reload  
+joy5 weapprev  
+joy6 weapnext  
+axis3plus +altattack  
+axis6plus +attack  
+joy7 togglemap  
+joy8 menu_main  
+joy9 "showpop 1" *(Mission Objectives)*  
+joy10 +speed *++joy10* +movedown  
+joy11 centerview *++joy11* +jump  
+pov1up "toggle cl_run"  *++pov1up* +moveup  
+pov1down invuse  
+pov1left invprev  
+pov1right invnext  
+
+
+***02_JoyMappings_PS34.diff:*** *(PS3/PS4 Specific Axes - Triggers as Buttons ++Doublebinds)*  
+const EJoyAxis SDLInputJoystick::DefaultAxes[5] = {JOYAXIS_Side, JOYAXIS_Forward, JOYAXIS_None, JOYAXIS_Yaw, JOYAXIS_Pitch};  
+joy1 +jump  
+joy2 +use *++joy2* land  
+joy3 +speed *++joy3* +reload  
+joy4 crouch *++joy4* +movedown  
+joy5 weapprev  
+joy6 weapnext  
+joy7 +altattack  
+joy8 +attack  
+joy9 togglemap  
+joy10 menu_main  
+joy11 "showpop 1" *(Mission Objectives)*  
+joy12 +speed *++joy12* +movedown  
+joy13 centerview *++joy13* +jump  
+pov1up "toggle cl_run" *++pov1up* +moveup  
+pov1down invuse  
+pov1left invprev  
+pov1right invnext  
+
 **0ptional:**
 *You can Tweak the [02_JoyMappings_CUSTOM.diff] file, just make sure to maintain the same number of +//Lines #115+ #116Empty.*  
 
